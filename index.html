@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emotional Voice Conversion Demo</title>
+    <style>
+        /* 基础样式 */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f7fb;
+        }
+
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* 上传区域样式 */
+        .upload-section {
+            border: 2px dashed #4a90e2;
+            padding: 40px;
+            text-align: center;
+            margin-bottom: 30px;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .upload-section:hover {
+            background-color: #f8f9ff;
+            transform: translateY(-2px);
+        }
+
+        /* 参数设置 */
+        .parameter-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .param-card {
+            background: #f8f9ff;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #4a90e2;
+        }
+
+        /* 结果展示 */
+        .result-section {
+            margin-top: 40px;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .audio-player {
+            width: 100%;
+            margin: 20px 0;
+            background: #f8f9ff;
+            border-radius: 8px;
+        }
+
+        /* 按钮样式 */
+        .convert-btn {
+            background: #4a90e2;
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .convert-btn:hover {
+            background: #357abd;
+            transform: scale(1.05);
+        }
+
+        /* 加载动画 */
+        .loader {
+            display: none;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #4a90e2;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Emotional Voice Conversion</h1>
+
+        <!-- 上传区域 -->
+        <div class="upload-section">
+            <h3>Upload Source Audio</h3>
+            <input type="file" id="audioInput" accept=".wav, .mp3">
+            <p>Supported formats: WAV, MP3 | Max size: 10MB</p>
+        </div>
+
+        <!-- 参数设置 -->
+        <div class="parameter-section">
+            <div class="param-card">
+                <h4>Source Emotion</h4>
+                <select id="sourceEmotion">
+                    <option value="neutral">Neutral</option>
+                    <option value="happy">Happy</option>
+                    <option value="sad">Sad</option>
+                    <option value="angry">Angry</option>
+                </select>
+            </div>
+
+            <div class="param-card">
+                <h4>Target Emotion</h4>
+                <select id="targetEmotion">
+                    <option value="happy">Happy</option>
+                    <option value="sad">Sad</option>
+                    <option value="angry">Angry</option>
+                    <option value="neutral">Neutral</option>
+                </select>
+            </div>
+        </div>
+
+        <button class="convert-btn" onclick="convert()">Convert Emotion</button>
+        <div class="loader" id="loader"></div>
+
+        <!-- 结果展示 -->
+        <div class="result-section" id="resultSection">
+            <h3>Conversion Result</h3>
+            <audio controls class="audio-player" id="resultAudio"></audio>
+            <div id="analysisResult"></div>
+            <button class="convert-btn" onclick="downloadResult()">Download Result</button>
+        </div>
+    </div>
+
+    <script>
+        // 转换函数
+        async function convert() {
+            const fileInput = document.getElementById('audioInput');
+            const loader = document.getElementById('loader');
+            const resultSection = document.getElementById('resultSection');
+
+            if (!fileInput.files[0]) {
+                alert('Please select an audio file');
+                return;
+            }
+
+            // 显示加载动画
+            loader.style.display = 'block';
+            resultSection.style.opacity = '0';
+
+            // 创建FormData对象
+            const formData = new FormData();
+            formData.append('audio', fileInput.files[0]);
+            formData.append('source', document.getElementById('sourceEmotion').value);
+            formData.append('target', document.getElementById('targetEmotion').value);
+
+            try {
+                // 发送请求到后端（需要替换为你的API endpoint）
+                const response = await fetch('/api/convert', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (!response.ok) throw new Error('Conversion failed');
+
+                const result = await response.json();
+
+                // 显示结果
+                document.getElementById('resultAudio').src = result.audioUrl;
+                resultSection.style.opacity = '1';
+
+            } catch (error) {
+                alert(error.message);
+            } finally {
+                loader.style.display = 'none';
+            }
+        }
+
+        // 下载功能
+        function downloadResult() {
+            const audioElement = document.getElementById('resultAudio');
+            const link = document.createElement('a');
+            link.href = audioElement.src;
+            link.download = `converted_${Date.now()}.wav`;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+    </script>
+</body>
+</html>
