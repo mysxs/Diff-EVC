@@ -43,7 +43,7 @@
             text-align: left;
             margin-top: 30px;
             padding: 20px;
-            background: #f8f9ff;
+            background: white; /* 修改背景颜色为白色 */
             border-radius: 10px;
         }
 
@@ -93,7 +93,7 @@
         }
 
         /* 按钮样式 */
-        .download-btn {
+        .play-btn, .download-btn {
             background: #4a90e2;
             color: white;
             padding: 10px 20px;
@@ -104,7 +104,7 @@
             transition: all 0.3s ease;
         }
 
-        .download-btn:hover {
+        .play-btn:hover, .download-btn:hover {
             background: #357abd;
             transform: scale(1.05);
         }
@@ -160,54 +160,63 @@
                     <audio controls class="audio-player">
                         <source src="neutral_1.wav" type="audio/wav">
                     </audio>
+                    <button class="play-btn" onclick="playAudio('neutral_1.wav')">Play</button>
                     <button class="download-btn" onclick="downloadAudio('neutral_1.wav')">Download</button>
                 </td>
                 <td>
                     <audio controls class="audio-player">
                         <source src="cyclegan_1.wav" type="audio/wav">
                     </audio>
+                    <button class="play-btn" onclick="playAudio('cyclegan_1.wav')">Play</button>
                     <button class="download-btn" onclick="downloadAudio('cyclegan_1.wav')">Download</button>
                 </td>
                 <td>
                     <audio controls class="audio-player">
                         <source src="stargan_1.wav" type="audio/wav">
                     </audio>
+                    <button class="play-btn" onclick="playAudio('stargan_1.wav')">Play</button>
                     <button class="download-btn" onclick="downloadAudio('stargan_1.wav')">Download</button>
                 </td>
                 <td>
                     <audio controls class="audio-player">
                         <source src="seq2seq_1.wav" type="audio/wav">
                     </audio>
+                    <button class="play-btn" onclick="playAudio('seq2seq_1.wav')">Play</button>
                     <button class="download-btn" onclick="downloadAudio('seq2seq_1.wav')">Download</button>
                 </td>
                 <td>
                     <audio controls class="audio-player">
                         <source src="emovox_1.wav" type="audio/wav">
                     </audio>
+                    <button class="play-btn" onclick="playAudio('emovox_1.wav')">Play</button>
                     <button class="download-btn" onclick="downloadAudio('emovox_1.wav')">Download</button>
                 </td>
                 <td>
                     <audio controls class="audio-player">
                         <source src="prosody2vec_1.wav" type="audio/wav">
                     </audio>
+                    <button class="play-btn" onclick="playAudio('prosody2vec_1.wav')">Play</button>
                     <button class="download-btn" onclick="downloadAudio('prosody2vec_1.wav')">Download</button>
                 </td>
                 <td>
                     <audio controls class="audio-player">
                         <source src="ours_1.wav" type="audio/wav">
                     </audio>
+                    <button class="play-btn" onclick="playAudio('ours_1.wav')">Play</button>
                     <button class="download-btn" onclick="downloadAudio('ours_1.wav')">Download</button>
                 </td>
                 <td>
                     <audio controls class="audio-player">
                         <source src="target_1.wav" type="audio/wav">
                     </audio>
+                    <button class="play-btn" onclick="playAudio('target_1.wav')">Play</button>
                     <button class="download-btn" onclick="downloadAudio('target_1.wav')">Download</button>
                 </td>
                 <td>
                     <audio controls class="audio-player">
                         <source src="reference_1.wav" type="audio/wav">
                     </audio>
+                    <button class="play-btn" onclick="playAudio('reference_1.wav')">Play</button>
                     <button class="download-btn" onclick="downloadAudio('reference_1.wav')">Download</button>
                 </td>
             </tr>
@@ -217,54 +226,63 @@
                     <audio controls class="audio-player">
                         <source src="neutral_2.wav" type="audio/wav">
                     </audio>
+                    <button class="play-btn" onclick="playAudio('neutral_2.wav')">Play</button>
                     <button class="download-btn" onclick="downloadAudio('neutral_2.wav')">Download</button>
                 </td>
                 <td>
                     <audio controls class="audio-player">
                         <source src="cyclegan_2.wav" type="audio/wav">
                     </audio>
+                    <button class="play-btn" onclick="playAudio('cyclegan_2.wav')">Play</button>
                     <button class="download-btn" onclick="downloadAudio('cyclegan_2.wav')">Download</button>
                 </td>
                 <td>
                     <audio controls class="audio-player">
                         <source src="stargan_2.wav" type="audio/wav">
                     </audio>
+                    <button class="play-btn" onclick="playAudio('stargan_2.wav')">Play</button>
                     <button class="download-btn" onclick="downloadAudio('stargan_2.wav')">Download</button>
                 </td>
                 <td>
                     <audio controls class="audio-player">
                         <source src="seq2seq_2.wav" type="audio/wav">
                     </audio>
+                    <button class="play-btn" onclick="playAudio('seq2seq_2.wav')">Play</button>
                     <button class="download-btn" onclick="downloadAudio('seq2seq_2.wav')">Download</button>
                 </td>
                 <td>
                     <audio controls class="audio-player">
                         <source src="emovox_2.wav" type="audio/wav">
                     </audio>
+                    <button class="play-btn" onclick="playAudio('emovox_2.wav')">Play</button>
                     <button class="download-btn" onclick="downloadAudio('emovox_2.wav')">Download</button>
                 </td>
                 <td>
                     <audio controls class="audio-player">
                         <source src="prosody2vec_2.wav" type="audio/wav">
                     </audio>
+                    <button class="play-btn" onclick="playAudio('prosody2vec_2.wav')">Play</button>
                     <button class="download-btn" onclick="downloadAudio('prosody2vec_2.wav')">Download</button>
                 </td>
                 <td>
                     <audio controls class="audio-player">
                         <source src="ours_2.wav" type="audio/wav">
                     </audio>
+                    <button class="play-btn" onclick="playAudio('ours_2.wav')">Play</button>
                     <button class="download-btn" onclick="downloadAudio('ours_2.wav')">Download</button>
                 </td>
                 <td>
                     <audio controls class="audio-player">
                         <source src="target_2.wav" type="audio/wav">
                     </audio>
+                    <button class="play-btn" onclick="playAudio('target_2.wav')">Play</button>
                     <button class="download-btn" onclick="downloadAudio('target_2.wav')">Download</button>
                 </td>
                 <td>
                     <audio controls class="audio-player">
                         <source src="reference_2.wav" type="audio/wav">
                     </audio>
+                    <button class="play-btn" onclick="playAudio('reference_2.wav')">Play</button>
                     <button class="download-btn" onclick="downloadAudio('reference_2.wav')">Download</button>
                 </td>
             </tr>
@@ -291,54 +309,63 @@
                     <audio controls class="audio-player">
                         <source src="neutral_1.wav" type="audio/wav">
                     </audio>
+                    <button class="play-btn" onclick="playAudio('neutral_1.wav')">Play</button>
                     <button class="download-btn" onclick="downloadAudio('neutral_1.wav')">Download</button>
                 </td>
                 <td>
                     <audio controls class="audio-player">
                         <source src="cyclegan_1.wav" type="audio/wav">
                     </audio>
+                    <button class="play-btn" onclick="playAudio('cyclegan_1.wav')">Play</button>
                     <button class="download-btn" onclick="downloadAudio('cyclegan_1.wav')">Download</button>
                 </td>
                 <td>
                     <audio controls class="audio-player">
                         <source src="stargan_1.wav" type="audio/wav">
                     </audio>
+                    <button class="play-btn" onclick="playAudio('stargan_1.wav')">Play</button>
                     <button class="download-btn" onclick="downloadAudio('stargan_1.wav')">Download</button>
                 </td>
                 <td>
                     <audio controls class="audio-player">
                         <source src="seq2seq_1.wav" type="audio/wav">
                     </audio>
+                    <button class="play-btn" onclick="playAudio('seq2seq_1.wav')">Play</button>
                     <button class="download-btn" onclick="downloadAudio('seq2seq_1.wav')">Download</button>
                 </td>
                 <td>
                     <audio controls class="audio-player">
                         <source src="emovox_1.wav" type="audio/wav">
                     </audio>
+                    <button class="play-btn" onclick="playAudio('emovox_1.wav')">Play</button>
                     <button class="download-btn" onclick="downloadAudio('emovox_1.wav')">Download</button>
                 </td>
                 <td>
                     <audio controls class="audio-player">
                         <source src="prosody2vec_1.wav" type="audio/wav">
                     </audio>
+                    <button class="play-btn" onclick="playAudio('prosody2vec_1.wav')">Play</button>
                     <button class="download-btn" onclick="downloadAudio('prosody2vec_1.wav')">Download</button>
                 </td>
                 <td>
                     <audio controls class="audio-player">
                         <source src="ours_1.wav" type="audio/wav">
                     </audio>
+                    <button class="play-btn" onclick="playAudio('ours_1.wav')">Play</button>
                     <button class="download-btn" onclick="downloadAudio('ours_1.wav')">Download</button>
                 </td>
                 <td>
                     <audio controls class="audio-player">
                         <source src="target_1.wav" type="audio/wav">
                     </audio>
+                    <button class="play-btn" onclick="playAudio('target_1.wav')">Play</button>
                     <button class="download-btn" onclick="downloadAudio('target_1.wav')">Download</button>
                 </td>
                 <td>
                     <audio controls class="audio-player">
                         <source src="reference_1.wav" type="audio/wav">
                     </audio>
+                    <button class="play-btn" onclick="playAudio('reference_1.wav')">Play</button>
                     <button class="download-btn" onclick="downloadAudio('reference_1.wav')">Download</button>
                 </td>
             </tr>
@@ -348,54 +375,63 @@
                     <audio controls class="audio-player">
                         <source src="neutral_2.wav" type="audio/wav">
                     </audio>
+                    <button class="play-btn" onclick="playAudio('neutral_2.wav')">Play</button>
                     <button class="download-btn" onclick="downloadAudio('neutral_2.wav')">Download</button>
                 </td>
                 <td>
                     <audio controls class="audio-player">
                         <source src="cyclegan_2.wav" type="audio/wav">
                     </audio>
+                    <button class="play-btn" onclick="playAudio('cyclegan_2.wav')">Play</button>
                     <button class="download-btn" onclick="downloadAudio('cyclegan_2.wav')">Download</button>
                 </td>
                 <td>
                     <audio controls class="audio-player">
                         <source src="stargan_2.wav" type="audio/wav">
                     </audio>
+                    <button class="play-btn" onclick="playAudio('stargan_2.wav')">Play</button>
                     <button class="download-btn" onclick="downloadAudio('stargan_2.wav')">Download</button>
                 </td>
                 <td>
                     <audio controls class="audio-player">
                         <source src="seq2seq_2.wav" type="audio/wav">
                     </audio>
+                    <button class="play-btn" onclick="playAudio('seq2seq_2.wav')">Play</button>
                     <button class="download-btn" onclick="downloadAudio('seq2seq_2.wav')">Download</button>
                 </td>
                 <td>
                     <audio controls class="audio-player">
                         <source src="emovox_2.wav" type="audio/wav">
                     </audio>
+                    <button class="play-btn" onclick="playAudio('emovox_2.wav')">Play</button>
                     <button class="download-btn" onclick="downloadAudio('emovox_2.wav')">Download</button>
                 </td>
                 <td>
                     <audio controls class="audio-player">
                         <source src="prosody2vec_2.wav" type="audio/wav">
                     </audio>
+                    <button class="play-btn" onclick="playAudio('prosody2vec_2.wav')">Play</button>
                     <button class="download-btn" onclick="downloadAudio('prosody2vec_2.wav')">Download</button>
                 </td>
                 <td>
                     <audio controls class="audio-player">
                         <source src="ours_2.wav" type="audio/wav">
                     </audio>
+                    <button class="play-btn" onclick="playAudio('ours_2.wav')">Play</button>
                     <button class="download-btn" onclick="downloadAudio('ours_2.wav')">Download</button>
                 </td>
                 <td>
                     <audio controls class="audio-player">
                         <source src="target_2.wav" type="audio/wav">
                     </audio>
+                    <button class="play-btn" onclick="playAudio('target_2.wav')">Play</button>
                     <button class="download-btn" onclick="downloadAudio('target_2.wav')">Download</button>
                 </td>
                 <td>
                     <audio controls class="audio-player">
                         <source src="reference_2.wav" type="audio/wav">
                     </audio>
+                    <button class="play-btn" onclick="playAudio('reference_2.wav')">Play</button>
                     <button class="download-btn" onclick="downloadAudio('reference_2.wav')">Download</button>
                 </td>
             </tr>
@@ -422,54 +458,63 @@
                     <audio controls class="audio-player">
                         <source src="neutral_1.wav" type="audio/wav">
                     </audio>
+                    <button class="play-btn" onclick="playAudio('neutral_1.wav')">Play</button>
                     <button class="download-btn" onclick="downloadAudio('neutral_1.wav')">Download</button>
                 </td>
                 <td>
                     <audio controls class="audio-player">
                         <source src="cyclegan_1.wav" type="audio/wav">
                     </audio>
+                    <button class="play-btn" onclick="playAudio('cyclegan_1.wav')">Play</button>
                     <button class="download-btn" onclick="downloadAudio('cyclegan_1.wav')">Download</button>
                 </td>
                 <td>
                     <audio controls class="audio-player">
                         <source src="stargan_1.wav" type="audio/wav">
                     </audio>
+                    <button class="play-btn" onclick="playAudio('stargan_1.wav')">Play</button>
                     <button class="download-btn" onclick="downloadAudio('stargan_1.wav')">Download</button>
                 </td>
                 <td>
                     <audio controls class="audio-player">
                         <source src="seq2seq_1.wav" type="audio/wav">
                     </audio>
+                    <button class="play-btn" onclick="playAudio('seq2seq_1.wav')">Play</button>
                     <button class="download-btn" onclick="downloadAudio('seq2seq_1.wav')">Download</button>
                 </td>
                 <td>
                     <audio controls class="audio-player">
                         <source src="emovox_1.wav" type="audio/wav">
                     </audio>
+                    <button class="play-btn" onclick="playAudio('emovox_1.wav')">Play</button>
                     <button class="download-btn" onclick="downloadAudio('emovox_1.wav')">Download</button>
                 </td>
                 <td>
                     <audio controls class="audio-player">
                         <source src="prosody2vec_1.wav" type="audio/wav">
                     </audio>
+                    <button class="play-btn" onclick="playAudio('prosody2vec_1.wav')">Play</button>
                     <button class="download-btn" onclick="downloadAudio('prosody2vec_1.wav')">Download</button>
                 </td>
                 <td>
                     <audio controls class="audio-player">
                         <source src="ours_1.wav" type="audio/wav">
                     </audio>
+                    <button class="play-btn" onclick="playAudio('ours_1.wav')">Play</button>
                     <button class="download-btn" onclick="downloadAudio('ours_1.wav')">Download</button>
                 </td>
                 <td>
                     <audio controls class="audio-player">
                         <source src="target_1.wav" type="audio/wav">
                     </audio>
+                    <button class="play-btn" onclick="playAudio('target_1.wav')">Play</button>
                     <button class="download-btn" onclick="downloadAudio('target_1.wav')">Download</button>
                 </td>
                 <td>
                     <audio controls class="audio-player">
                         <source src="reference_1.wav" type="audio/wav">
                     </audio>
+                    <button class="play-btn" onclick="playAudio('reference_1.wav')">Play</button>
                     <button class="download-btn" onclick="downloadAudio('reference_1.wav')">Download</button>
                 </td>
             </tr>
@@ -479,54 +524,63 @@
                     <audio controls class="audio-player">
                         <source src="neutral_2.wav" type="audio/wav">
                     </audio>
+                    <button class="play-btn" onclick="playAudio('neutral_2.wav')">Play</button>
                     <button class="download-btn" onclick="downloadAudio('neutral_2.wav')">Download</button>
                 </td>
                 <td>
                     <audio controls class="audio-player">
                         <source src="cyclegan_2.wav" type="audio/wav">
                     </audio>
+                    <button class="play-btn" onclick="playAudio('cyclegan_2.wav')">Play</button>
                     <button class="download-btn" onclick="downloadAudio('cyclegan_2.wav')">Download</button>
                 </td>
                 <td>
                     <audio controls class="audio-player">
                         <source src="stargan_2.wav" type="audio/wav">
                     </audio>
+                    <button class="play-btn" onclick="playAudio('stargan_2.wav')">Play</button>
                     <button class="download-btn" onclick="downloadAudio('stargan_2.wav')">Download</button>
                 </td>
                 <td>
                     <audio controls class="audio-player">
                         <source src="seq2seq_2.wav" type="audio/wav">
                     </audio>
+                    <button class="play-btn" onclick="playAudio('seq2seq_2.wav')">Play</button>
                     <button class="download-btn" onclick="downloadAudio('seq2seq_2.wav')">Download</button>
                 </td>
                 <td>
                     <audio controls class="audio-player">
                         <source src="emovox_2.wav" type="audio/wav">
                     </audio>
+                    <button class="play-btn" onclick="playAudio('emovox_2.wav')">Play</button>
                     <button class="download-btn" onclick="downloadAudio('emovox_2.wav')">Download</button>
                 </td>
                 <td>
                     <audio controls class="audio-player">
                         <source src="prosody2vec_2.wav" type="audio/wav">
                     </audio>
+                    <button class="play-btn" onclick="playAudio('prosody2vec_2.wav')">Play</button>
                     <button class="download-btn" onclick="downloadAudio('prosody2vec_2.wav')">Download</button>
                 </td>
                 <td>
                     <audio controls class="audio-player">
                         <source src="ours_2.wav" type="audio/wav">
                     </audio>
+                    <button class="play-btn" onclick="playAudio('ours_2.wav')">Play</button>
                     <button class="download-btn" onclick="downloadAudio('ours_2.wav')">Download</button>
                 </td>
                 <td>
                     <audio controls class="audio-player">
                         <source src="target_2.wav" type="audio/wav">
                     </audio>
+                    <button class="play-btn" onclick="playAudio('target_2.wav')">Play</button>
                     <button class="download-btn" onclick="downloadAudio('target_2.wav')">Download</button>
                 </td>
                 <td>
                     <audio controls class="audio-player">
                         <source src="reference_2.wav" type="audio/wav">
                     </audio>
+                    <button class="play-btn" onclick="playAudio('reference_2.wav')">Play</button>
                     <button class="download-btn" onclick="downloadAudio('reference_2.wav')">Download</button>
                 </td>
             </tr>
@@ -534,6 +588,14 @@
     </div>
 
     <script>
+        // 播放音频功能
+        function playAudio(fileName) {
+            const audioElement = document.createElement('audio');
+            audioElement.src = fileName;
+            audioElement.controls = true;
+            audioElement.play();
+        }
+
         // 下载音频功能
         function downloadAudio(fileName) {
             const audioElement = document.createElement('a');
