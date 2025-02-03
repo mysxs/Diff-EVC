@@ -71,12 +71,14 @@
             width: 100%;
             border-collapse: collapse;
             margin-bottom: 40px;
+            table-layout: fixed; /* 固定表格布局 */
         }
 
         .demo-table th, .demo-table td {
             border: 1px solid #ddd;
             padding: 15px;
             text-align: center;
+            vertical-align: middle;
         }
 
         .demo-table th {
@@ -94,11 +96,65 @@
             cursor: pointer;
             font-size: 14px;
             transition: all 0.3s ease;
+            margin: 2px; /* 增加按钮间距 */
         }
 
         .play-btn:hover, .download-btn:hover {
             background: #357abd;
             transform: scale(1.05);
+        }
+
+        /* 圆形按钮 */
+        .play-btn, .download-btn {
+            border-radius: 50%; /* 圆形按钮 */
+            width: 30px;
+            height: 30px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0; /* 去掉内边距 */
+            font-size: 12px; /* 调整字体大小 */
+        }
+
+        /* 表格列宽调整 */
+        .demo-table th:nth-child(1), .demo-table td:nth-child(1) {
+            width: 10%;
+        }
+
+        .demo-table th:nth-child(2), .demo-table td:nth-child(2) {
+            width: 10%;
+        }
+
+        .demo-table th:nth-child(3), .demo-table td:nth-child(3) {
+            width: 10%;
+        }
+
+        .demo-table th:nth-child(4), .demo-table td:nth-child(4) {
+            width: 10%;
+        }
+
+        .demo-table th:nth-child(5), .demo-table td:nth-child(5) {
+            width: 10%;
+        }
+
+        .demo-table th:nth-child(6), .demo-table td:nth-child(6) {
+            width: 10%;
+        }
+
+        .demo-table th:nth-child(7), .demo-table td:nth-child(7) {
+            width: 10%;
+        }
+
+        .demo-table th:nth-child(8), .demo-table td:nth-child(8) {
+            width: 10%;
+        }
+
+        .demo-table th:nth-child(9), .demo-table td:nth-child(9) {
+            width: 10%;
+        }
+
+        .demo-table th:nth-child(10), .demo-table td:nth-child(10) {
+            width: 10%;
         }
     </style>
 </head>
