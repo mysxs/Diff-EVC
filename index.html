@@ -3,221 +3,94 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>StableVC: Style Controllable Zero-Shot Voice Conversion</title>
+    <title>Any-to-Any EVC</title>
     <style>
-        /* 基础样式 */
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #f5f7fb;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #1a4e3d;
+            color: white;
         }
-
-        .container {
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .paper-intro {
+        .header {
             text-align: center;
-            margin-bottom: 40px;
+            padding: 50px 0;
+            background-color: #1a4e3d;
         }
-
-        .paper-intro h1 {
-            font-size: 2.5em;
-            color: #333;
-            margin-bottom: 10px;
+        .header h1 {
+            font-size: 36px;
+            margin: 0;
         }
-
-        .paper-intro p {
-            font-size: 1.2em;
-            color: #666;
-            margin-bottom: 20px;
-        }
-
-        .model-image {
-            text-align: center;
-            margin: 40px 0;
-        }
-
-        .model-image img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .model-image .caption {
-            font-size: 1.2em;
-            color: #666;
+        .header h2 {
+            font-size: 18px;
             margin-top: 10px;
         }
-
-        .demo-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 40px;
-            table-layout: fixed; /* 固定表格布局 */
+        .section {
+            padding: 40px 10%;
         }
-
-        .demo-table th, .demo-table td {
-            border: 1px solid #ddd;
-            padding: 15px;
+        .section h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
             text-align: center;
-            vertical-align: middle;
         }
-
-        .demo-table th {
-            background-color: #f8f9ff;
-            font-weight: bold;
+        .audio-demo {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 10px;
+            justify-items: center;
         }
-
-        /* 新增按钮样式 */
-        .play-btn, .download-btn {
-            background: #4a90e2;
-            color: white;
-            padding: 10px 20px;
+        .audio-demo button {
+            background-color: #ffffff;
+            color: #1a4e3d;
             border: none;
-            border-radius: 25px;
-            cursor: pointer;
-            font-size: 14px;
-            transition: all 0.3s ease;
-            margin: 2px;
-        }
-
-        .play-btn:hover, .download-btn:hover {
-            background: #357abd;
-            transform: scale(1.05);
-        }
-
-        /* 下拉菜单样式 */
-        .menu {
-            position: absolute;
-            background-color: white;
-            border: 1px solid #ddd;
-            padding: 10px;
-            display: none;
-            z-index: 1;
             border-radius: 5px;
-            min-width: 150px;
-        }
-
-        .menu a {
-            display: block;
-            color: #333;
-            padding: 5px;
-            text-decoration: none;
-        }
-
-        .menu a:hover {
-            background-color: #f5f5f5;
-        }
-
-        .audio-wrapper {
-            position: relative;
-        }
-
-        .menu-button {
-            position: absolute;
-            top: 0;
-            right: 0;
-            background-color: #f1f1f1;
-            padding: 5px;
+            padding: 10px 20px;
             cursor: pointer;
-            border-radius: 50%;
+        }
+        .audio-demo button:disabled {
+            background-color: #f0f0f0;
+            color: #888;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h2>Audio Demos</h2>
 
-        <!-- 示例：Neutral to Angry -->
-        <h3>Neutral to Angry</h3>
-        <table class="demo-table">
-            <tr>
-                <th>Method</th>
-                <th>Neutral</th>
-                <th>Ours</th>
-                <th>Target</th>
-                <th>Reference</th>
-            </tr>
-            <tr>
-                <td>Audio 1</td>
-                <td class="audio-wrapper">
-                    <button class="play-btn" onclick="playAudio('neutral_1.wav')">Play</button>
-                    <button class="download-btn" onclick="downloadAudio('neutral_1.wav')">Download</button>
-                    <div class="menu-button" onclick="toggleMenu(event, 'menu1')">...</div>
-                    <div id="menu1" class="menu">
-                        <a href="#" onclick="downloadAudio('neutral_1.wav')">Download</a>
-                    </div>
-                </td>
-                <td class="audio-wrapper">
-                    <button class="play-btn" onclick="playAudio('ours_1.wav')">Play</button>
-                    <button class="download-btn" onclick="downloadAudio('ours_1.wav')">Download</button>
-                    <div class="menu-button" onclick="toggleMenu(event, 'menu2')">...</div>
-                    <div id="menu2" class="menu">
-                        <a href="#" onclick="downloadAudio('ours_1.wav')">Download</a>
-                    </div>
-                </td>
-                <td class="audio-wrapper">
-                    <button class="play-btn" onclick="playAudio('target_1.wav')">Play</button>
-                    <button class="download-btn" onclick="downloadAudio('target_1.wav')">Download</button>
-                    <div class="menu-button" onclick="toggleMenu(event, 'menu3')">...</div>
-                    <div id="menu3" class="menu">
-                        <a href="#" onclick="downloadAudio('target_1.wav')">Download</a>
-                    </div>
-                </td>
-                <td class="audio-wrapper">
-                    <button class="play-btn" onclick="playAudio('reference_1.wav')">Play</button>
-                    <button class="download-btn" onclick="downloadAudio('reference_1.wav')">Download</button>
-                    <div class="menu-button" onclick="toggleMenu(event, 'menu4')">...</div>
-                    <div id="menu4" class="menu">
-                        <a href="#" onclick="downloadAudio('reference_1.wav')">Download</a>
-                    </div>
-                </td>
-            </tr>
-        </table>
-
+    <div class="header">
+        <h1>Any-to-Any-EVC</h1>
+        <h2>Hsing-Hang Chou, Yun-Shao Lin, Ching-Chin Sun, Yu Tsao, Chi-Chun Lee</h2>
+        <p>Department of Electrical Engineering, National Tsing Hua University, Taiwan</p>
+        <p>Center for Information Technology Innovation, Academia Sinica, Taiwan</p>
     </div>
 
-    <script>
-        // 播放音频功能
-        function playAudio(fileName) {
-            const audioElement = new Audio(fileName);
-            audioElement.controls = true;
-            audioElement.play();
-        }
+    <div class="section">
+        <h2>Audio Demo for Emotional Voice Conversion (EVC)</h2>
 
-        // 下载音频功能
-        function downloadAudio(fileName) {
-            const audioElement = document.createElement('a');
-            audioElement.href = fileName;
-            audioElement.download = fileName;
-            document.body.appendChild(audioElement);
-            audioElement.click();
-            document.body.removeChild(audioElement);
-        }
+        <h3>Neutral to Angry</h3>
+        <div class="audio-demo">
+            <button disabled>Neutral</button>
+            <button disabled>CycleGAN-EVC</button>
+            <button disabled>StarGAN-EVC</button>
+            <button disabled>Seq2Seq-EVC</button>
+            <button disabled>Emovox</button>
+            <button>Prosody2Vec</button>
+            <button>Ours</button>
+            <button disabled>Target</button>
+            <button disabled>Reference</button>
+        </div>
 
-        // 切换菜单显示
-        function toggleMenu(event, menuId) {
-            const menu = document.getElementById(menuId);
-            menu.style.display = menu.style.display === "block" ? "none" : "block";
-            event.stopPropagation();
-        }
+        <h3>Neutral to Happy</h3>
+        <div class="audio-demo">
+            <button disabled>Neutral</button>
+            <button disabled>CycleGAN-EVC</button>
+            <button disabled>StarGAN-EVC</button>
+            <button disabled>Seq2Seq-EVC</button>
+            <button disabled>Emovox</button>
+            <button>Prosody2Vec</button>
+            <button>Ours</button>
+            <button disabled>Target</button>
+            <button disabled>Reference</button>
+        </div>
+    </div>
 
-        // 关闭菜单
-        window.onclick = function(event) {
-            if (!event.target.matches('.menu-button')) {
-                const menus = document.querySelectorAll('.menu');
-                menus.forEach(function(menu) {
-                    menu.style.display = 'none';
-                });
-            }
-        }
-    </script>
 </body>
 </html>
