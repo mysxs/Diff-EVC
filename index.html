@@ -3,181 +3,456 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Any-to-Any EVC</title>
+    <title>StableVC: Style Controllable Zero-Shot Voice Conversion</title>
     <style>
+        /* 基础样式 */
         body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            color: black;
-            background-color: #f0f0f0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f7fb;
         }
-        .header {
-            background-color: #808080; /* Gray background */
-            color: black;
-            padding: 40px 10%;
+
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* 论文介绍样式 */
+        .paper-intro {
             text-align: center;
+            margin-bottom: 40px;
         }
-        .header h1 {
-            font-size: 32px;
-            margin: 0;
-        }
-        .header p {
-            font-size: 18px;
-            margin: 10px 0;
-        }
-        .section {
-            padding: 40px 10%;
-        }
-        .section h2 {
-            font-size: 28px;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-        .section .sub-title {
-            font-size: 20px;
+
+        .paper-intro h1 {
+            font-size: 2.5em;
+            color: #333;
             margin-bottom: 10px;
+        }
+
+        .paper-intro p {
+            font-size: 1.2em;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .paper-intro .abstract {
+            text-align: left;
             margin-top: 30px;
+            padding: 20px;
+            background: #f8f9ff;
+            border-radius: 10px;
         }
-        .audio-demo {
-            display: grid;
-            grid-template-columns: repeat(9, 1fr);
-            gap: 10px;
-            justify-items: center;
+
+        /* 模型图片样式 */
+        .model-image {
+            text-align: center;
+            margin: 40px 0;
         }
-        .audio-demo button {
-            background-color: #ffffff;
-            color: black;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            padding: 10px 20px;
-            cursor: pointer;
+
+        .model-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
-        .audio-demo button:disabled {
-            background-color: #f0f0f0;
-            color: #888;
-            cursor: not-allowed;
+
+        .model-image .caption {
+            font-size: 1.2em;
+            color: #666;
+            margin-top: 10px;
         }
-        .audio-demo .play-btn {
-            background-color: #808080;
-            color: white;
-            border-radius: 5px;
-            padding: 8px 15px;
-        }
-        .table {
+
+        /* 表格样式 */
+        .demo-table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 30px;
+            margin-bottom: 40px;
         }
-        .table th, .table td {
+
+        .demo-table th, .demo-table td {
             border: 1px solid #ddd;
-            padding: 10px;
+            padding: 15px;
             text-align: center;
         }
-        .table th {
-            background-color: #f4f4f4;
+
+        .demo-table th {
+            background-color: #f8f9ff;
+            font-weight: bold;
+        }
+
+        /* 音频播放器样式 */
+        .audio-player {
+            width: 100%;
+            margin: 10px 0;
+            background: #f8f9ff;
+            border-radius: 8px;
+        }
+
+        /* 按钮样式 */
+        .download-btn {
+            background: #4a90e2;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .download-btn:hover {
+            background: #357abd;
+            transform: scale(1.05);
         }
     </style>
 </head>
 <body>
+    <div class="container">
+        <!-- 论文介绍 -->
+        <div class="paper-intro">
+            <h1>StableVC: Style Controllable Zero-Shot Voice Conversion with Conditional Flow Matching</h1>
+            <p>Jixun Yao, Yang Yugang, Yu Pan, Ziqian Ning, Jianhao Ye, Hongbin Zhou, Lei Xie</p>
+            <p>1.Audio, Speech and Language Processing Group (ASLP@NPU)</p>
+            <p>School of Computer Science, Northwestern Polytechnical University, Xi'an, China</p>
+            <p>2.Ximalaya Inc, China</p>
 
-    <div class="header">
-        <h1>Any-to-Any-EVC</h1>
-        <p>Hsing-Hang Chou, Yun-Shao Lin, Ching-Chin Sun, Yu Tsao, Chi-Chun Lee</p>
-        <p>1. Department of Electrical Engineering, National Tsing Hua University, Taiwan</p>
-        <p>2. Center for Information Technology Innovation, Academia Sinica, Taiwan</p>
-    </div>
-
-    <div class="section">
-        <h2>1. Audio Demo for Emotional Voice Conversion (EVC)</h2>
-
-        <h3 class="sub-title">Neutral to Angry</h3>
-        <div class="audio-demo">
-            <button onclick="playAudio('audio1')">Play</button>
-            <button onclick="downloadAudio('audio1')">Download</button>
-            <audio id="Neutral1" src="0013_000012.wav"></audio>
-
-            <button onclick="playAudio('audio2')">Play</button>
-            <button onclick="downloadAudio('audio2')">Download</button>
-            <audio id="audio2" src="your_audio_file.mp3"></audio>
-
-            <button onclick="playAudio('audio3')">Play</button>
-            <button onclick="downloadAudio('audio3')">Download</button>
-            <audio id="audio3" src="your_audio_file.mp3"></audio>
-
-            <button onclick="playAudio('audio4')">Play</button>
-            <button onclick="downloadAudio('audio4')">Download</button>
-            <audio id="audio4" src="your_audio_file.mp3"></audio>
-
-            <button onclick="playAudio('audio5')">Play</button>
-            <button onclick="downloadAudio('audio5')">Download</button>
-            <audio id="audio5" src="your_audio_file.mp3"></audio>
-
-            <button onclick="playAudio('audio6')">Play</button>
-            <button onclick="downloadAudio('audio6')">Download</button>
-            <audio id="audio6" src="your_audio_file.mp3"></audio>
-
-            <button onclick="playAudio('audio7')">Play</button>
-            <button onclick="downloadAudio('audio7')">Download</button>
-            <audio id="audio7" src="your_audio_file.mp3"></audio>
-
-            <button onclick="playAudio('audio8')">Play</button>
-            <button onclick="downloadAudio('audio8')">Download</button>
-            <audio id="audio8" src="your_audio_file.mp3"></audio>
-
-            <button onclick="playAudio('audio9')">Play</button>
-            <button onclick="downloadAudio('audio9')">Download</button>
-            <audio id="audio9" src="your_audio_file.mp3"></audio>
+            <div class="abstract">
+                <h2>Abstract</h2>
+                <p>
+                    Zero-shot voice conversion (VC) aims to transfer the timbre from the source speaker to an arbitrary unseen speaker while preserving the original linguistic content. Despite recent advancements in zero-shot VC using language models or diffusion-based approaches, several challenges remain: 1) current approaches primarily focus on adapting timbre from unseen speakers and are unable to transfer style and timbre to different unseen speakers independently; 2) these approaches often suffer from slower inference speeds due to the autoregressive modeling methods or the need for numerous sampling steps; 3) the quality and similarity of the converted samples are still not fully satisfactory. To address these challenges, we propose a Stable controllable zero-shot VC approach named StableVC, which aims to transfer timbre and style from source speech to unseen target speakers. Specifically, we decompose speech into linguistic content, timbre, and style, and then employ a conditional flow matching module to reconstruct the high-quality mel-spectrogram based on these decomposed features. To effectively capture timbre and style in a zero-shot manner, we introduce a novel dual attention mechanism with an adaptive gate, rather than using conventional feature concatenation. With this non-autoregressive design, StableVC can efficiently capture the intricate timbre and style from different unseen speakers and generate high-quality speech significantly faster than real-time. Experiments demonstrate that our proposed StableVC outperforms state-of-the-art baseline systems in zero-shot VC and achieves flexible control over timbre and style from different unseen speakers. Moreover, StableVC offers approximately 25x and 1.65x faster sampling compared to autoregressive and diffusion-based baselines.
+                </p>
+            </div>
         </div>
 
-        <!-- Repeat for Neutral to Happy, Neutral to Sad, Neutral to Surprise -->
-        <!-- The rest sections can be similar with different IDs for each audio element -->
-
-        <h3 class="sub-title">Neutral to Happy</h3>
-        <div class="audio-demo">
-            <button onclick="playAudio('audio10')">Play</button>
-            <button onclick="downloadAudio('audio10')">Download</button>
-            <audio id="audio10" src="your_audio_file.mp3"></audio>
-
-            <!-- Add additional buttons for each of the other 25 audio files -->
+        <!-- 模型图片和图例 -->
+        <div class="model-image">
+            <img src="model_architecture.png" alt="StableVC Model Architecture">
+            <div class="caption">
+                <p><strong>Figure 1:</strong> The overall framework of StableVC includes three feature extractors for style, linguistic content, and mel-spectrogram extraction. It also incorporates a content module and a duration module to re-predict the duration based on different styles and timbres, and a flow matching module generates high-quality speech by optimizing the feature alignment.</p>
+            </div>
         </div>
 
-        <h3 class="sub-title">Neutral to Sad</h3>
-        <div class="audio-demo">
-            <button onclick="playAudio('audio26')">Play</button>
-            <button onclick="downloadAudio('audio26')">Download</button>
-            <audio id="audio26" src="your_audio_file.mp3"></audio>
+        <!-- 音频demo展示 -->
+        <h2>Audio Demos</h2>
 
-            <!-- Add additional buttons for each of the other 25 audio files -->
-        </div>
+        <!-- Neutral to Angry -->
+         <h3 class="sub-title">Neutral to Angry</h3>
+            <div class="audio-demo">
+                <button onclick="playAudio('audio1')">Play</button>
+                <button onclick="downloadAudio('audio1')">Download</button>
+                <audio id="neutral_1" src="0013_000012.wav"></audio>
 
-        <h3 class="sub-title">Neutral to Surprise</h3>
-        <div class="audio-demo">
-            <button onclick="playAudio('audio51')">Play</button>
-            <button onclick="downloadAudio('audio51')">Download</button>
-            <audio id="audio51" src="your_audio_file.mp3"></audio>
+                <button onclick="playAudio('audio2')">Play</button>
+                <button onclick="downloadAudio('audio2')">Download</button>
+                <audio id="audio2" src="your_audio_file.mp3"></audio>
 
-            <!-- Add additional buttons for each of the other 25 audio files -->
-        </div>
+                <button onclick="playAudio('audio3')">Play</button>
+                <button onclick="downloadAudio('audio3')">Download</button>
+                <audio id="audio3" src="your_audio_file.mp3"></audio>
 
+                <button onclick="playAudio('audio4')">Play</button>
+                <button onclick="downloadAudio('audio4')">Download</button>
+                <audio id="audio4" src="your_audio_file.mp3"></audio>
+
+                <button onclick="playAudio('audio5')">Play</button>
+                <button onclick="downloadAudio('audio5')">Download</button>
+                <audio id="audio5" src="your_audio_file.mp3"></audio>
+
+                <button onclick="playAudio('audio6')">Play</button>
+                <button onclick="downloadAudio('audio6')">Download</button>
+                <audio id="audio6" src="your_audio_file.mp3"></audio>
+
+                <button onclick="playAudio('audio7')">Play</button>
+                <button onclick="downloadAudio('audio7')">Download</button>
+                <audio id="audio7" src="your_audio_file.mp3"></audio>
+
+                <button onclick="playAudio('audio8')">Play</button>
+                <button onclick="downloadAudio('audio8')">Download</button>
+                <audio id="audio8" src="your_audio_file.mp3"></audio>
+
+                <button onclick="playAudio('audio9')">Play</button>
+                <button onclick="downloadAudio('audio9')">Download</button>
+                <audio id="audio9" src="your_audio_file.mp3"></audio>
+            </div>
+
+
+        <!-- Neutral to Happy -->
+        <h3>Neutral to Happy</h3>
+        <table class="demo-table">
+            <tr>
+                <th>Method</th>
+                <th>Neutral</th>
+                <th>CycleGAN-EVC</th>
+                <th>StarGAN-EVC</th>
+                <th>Seq2Seq-EVC</th>
+                <th>Emovox</th>
+                <th>Prosody2Vec</th>
+                <th>Ours</th>
+                <th>Target</th>
+                <th>Reference</th>
+            </tr>
+            <tr>
+                <td>Audio 1</td>
+                <td>
+                    <audio controls class="audio-player">
+                        <source src="neutral_1.wav" type="audio/wav">
+                    </audio>
+                    <button class="download-btn" onclick="downloadAudio('neutral_1.wav')">Download</button>
+                </td>
+                <td>
+                    <audio controls class="audio-player">
+                        <source src="cyclegan_1.wav" type="audio/wav">
+                    </audio>
+                    <button class="download-btn" onclick="downloadAudio('cyclegan_1.wav')">Download</button>
+                </td>
+                <td>
+                    <audio controls class="audio-player">
+                        <source src="stargan_1.wav" type="audio/wav">
+                    </audio>
+                    <button class="download-btn" onclick="downloadAudio('stargan_1.wav')">Download</button>
+                </td>
+                <td>
+                    <audio controls class="audio-player">
+                        <source src="seq2seq_1.wav" type="audio/wav">
+                    </audio>
+                    <button class="download-btn" onclick="downloadAudio('seq2seq_1.wav')">Download</button>
+                </td>
+                <td>
+                    <audio controls class="audio-player">
+                        <source src="emovox_1.wav" type="audio/wav">
+                    </audio>
+                    <button class="download-btn" onclick="downloadAudio('emovox_1.wav')">Download</button>
+                </td>
+                <td>
+                    <audio controls class="audio-player">
+                        <source src="prosody2vec_1.wav" type="audio/wav">
+                    </audio>
+                    <button class="download-btn" onclick="downloadAudio('prosody2vec_1.wav')">Download</button>
+                </td>
+                <td>
+                    <audio controls class="audio-player">
+                        <source src="ours_1.wav" type="audio/wav">
+                    </audio>
+                    <button class="download-btn" onclick="downloadAudio('ours_1.wav')">Download</button>
+                </td>
+                <td>
+                    <audio controls class="audio-player">
+                        <source src="target_1.wav" type="audio/wav">
+                    </audio>
+                    <button class="download-btn" onclick="downloadAudio('target_1.wav')">Download</button>
+                </td>
+                <td>
+                    <audio controls class="audio-player">
+                        <source src="reference_1.wav" type="audio/wav">
+                    </audio>
+                    <button class="download-btn" onclick="downloadAudio('reference_1.wav')">Download</button>
+                </td>
+            </tr>
+            <tr>
+                <td>Audio 2</td>
+                <td>
+                    <audio controls class="audio-player">
+                        <source src="neutral_2.wav" type="audio/wav">
+                    </audio>
+                    <button class="download-btn" onclick="downloadAudio('neutral_2.wav')">Download</button>
+                </td>
+                <td>
+                    <audio controls class="audio-player">
+                        <source src="cyclegan_2.wav" type="audio/wav">
+                    </audio>
+                    <button class="download-btn" onclick="downloadAudio('cyclegan_2.wav')">Download</button>
+                </td>
+                <td>
+                    <audio controls class="audio-player">
+                        <source src="stargan_2.wav" type="audio/wav">
+                    </audio>
+                    <button class="download-btn" onclick="downloadAudio('stargan_2.wav')">Download</button>
+                </td>
+                <td>
+                    <audio controls class="audio-player">
+                        <source src="seq2seq_2.wav" type="audio/wav">
+                    </audio>
+                    <button class="download-btn" onclick="downloadAudio('seq2seq_2.wav')">Download</button>
+                </td>
+                <td>
+                    <audio controls class="audio-player">
+                        <source src="emovox_2.wav" type="audio/wav">
+                    </audio>
+                    <button class="download-btn" onclick="downloadAudio('emovox_2.wav')">Download</button>
+                </td>
+                <td>
+                    <audio controls class="audio-player">
+                        <source src="prosody2vec_2.wav" type="audio/wav">
+                    </audio>
+                    <button class="download-btn" onclick="downloadAudio('prosody2vec_2.wav')">Download</button>
+                </td>
+                <td>
+                    <audio controls class="audio-player">
+                        <source src="ours_2.wav" type="audio/wav">
+                    </audio>
+                    <button class="download-btn" onclick="downloadAudio('ours_2.wav')">Download</button>
+                </td>
+                <td>
+                    <audio controls class="audio-player">
+                        <source src="target_2.wav" type="audio/wav">
+                    </audio>
+                    <button class="download-btn" onclick="downloadAudio('target_2.wav')">Download</button>
+                </td>
+                <td>
+                    <audio controls class="audio-player">
+                        <source src="reference_2.wav" type="audio/wav">
+                    </audio>
+                    <button class="download-btn" onclick="downloadAudio('reference_2.wav')">Download</button>
+                </td>
+            </tr>
+        </table>
+
+        <!-- Neutral to Sad -->
+        <h3>Neutral to Sad</h3>
+        <table class="demo-table">
+            <tr>
+                <th>Method</th>
+                <th>Neutral</th>
+                <th>CycleGAN-EVC</th>
+                <th>StarGAN-EVC</th>
+                <th>Seq2Seq-EVC</th>
+                <th>Emovox</th>
+                <th>Prosody2Vec</th>
+                <th>Ours</th>
+                <th>Target</th>
+                <th>Reference</th>
+            </tr>
+            <tr>
+                <td>Audio 1</td>
+                <td>
+                    <audio controls class="audio-player">
+                        <source src="neutral_1.wav" type="audio/wav">
+                    </audio>
+                    <button class="download-btn" onclick="downloadAudio('neutral_1.wav')">Download</button>
+                </td>
+                <td>
+                    <audio controls class="audio-player">
+                        <source src="cyclegan_1.wav" type="audio/wav">
+                    </audio>
+                    <button class="download-btn" onclick="downloadAudio('cyclegan_1.wav')">Download</button>
+                </td>
+                <td>
+                    <audio controls class="audio-player">
+                        <source src="stargan_1.wav" type="audio/wav">
+                    </audio>
+                    <button class="download-btn" onclick="downloadAudio('stargan_1.wav')">Download</button>
+                </td>
+                <td>
+                    <audio controls class="audio-player">
+                        <source src="seq2seq_1.wav" type="audio/wav">
+                    </audio>
+                    <button class="download-btn" onclick="downloadAudio('seq2seq_1.wav')">Download</button>
+                </td>
+                <td>
+                    <audio controls class="audio-player">
+                        <source src="emovox_1.wav" type="audio/wav">
+                    </audio>
+                    <button class="download-btn" onclick="downloadAudio('emovox_1.wav')">Download</button>
+                </td>
+                <td>
+                    <audio controls class="audio-player">
+                        <source src="prosody2vec_1.wav" type="audio/wav">
+                    </audio>
+                    <button class="download-btn" onclick="downloadAudio('prosody2vec_1.wav')">Download</button>
+                </td>
+                <td>
+                    <audio controls class="audio-player">
+                        <source src="ours_1.wav" type="audio/wav">
+                    </audio>
+                    <button class="download-btn" onclick="downloadAudio('ours_1.wav')">Download</button>
+                </td>
+                <td>
+                    <audio controls class="audio-player">
+                        <source src="target_1.wav" type="audio/wav">
+                    </audio>
+                    <button class="download-btn" onclick="downloadAudio('target_1.wav')">Download</button>
+                </td>
+                <td>
+                    <audio controls class="audio-player">
+                        <source src="reference_1.wav" type="audio/wav">
+                    </audio>
+                    <button class="download-btn" onclick="downloadAudio('reference_1.wav')">Download</button>
+                </td>
+            </tr>
+            <tr>
+                <td>Audio 2</td>
+                <td>
+                    <audio controls class="audio-player">
+                        <source src="neutral_2.wav" type="audio/wav">
+                    </audio>
+                    <button class="download-btn" onclick="downloadAudio('neutral_2.wav')">Download</button>
+                </td>
+                <td>
+                    <audio controls class="audio-player">
+                        <source src="cyclegan_2.wav" type="audio/wav">
+                    </audio>
+                    <button class="download-btn" onclick="downloadAudio('cyclegan_2.wav')">Download</button>
+                </td>
+                <td>
+                    <audio controls class="audio-player">
+                        <source src="stargan_2.wav" type="audio/wav">
+                    </audio>
+                    <button class="download-btn" onclick="downloadAudio('stargan_2.wav')">Download</button>
+                </td>
+                <td>
+                    <audio controls class="audio-player">
+                        <source src="seq2seq_2.wav" type="audio/wav">
+                    </audio>
+                    <button class="download-btn" onclick="downloadAudio('seq2seq_2.wav')">Download</button>
+                </td>
+                <td>
+                    <audio controls class="audio-player">
+                        <source src="emovox_2.wav" type="audio/wav">
+                    </audio>
+                    <button class="download-btn" onclick="downloadAudio('emovox_2.wav')">Download</button>
+                </td>
+                <td>
+                    <audio controls class="audio-player">
+                        <source src="prosody2vec_2.wav" type="audio/wav">
+                    </audio>
+                    <button class="download-btn" onclick="downloadAudio('prosody2vec_2.wav')">Download</button>
+                </td>
+                <td>
+                    <audio controls class="audio-player">
+                        <source src="ours_2.wav" type="audio/wav">
+                    </audio>
+                    <button class="download-btn" onclick="downloadAudio('ours_2.wav')">Download</button>
+                </td>
+                <td>
+                    <audio controls class="audio-player">
+                        <source src="target_2.wav" type="audio/wav">
+                    </audio>
+                    <button class="download-btn" onclick="downloadAudio('target_2.wav')">Download</button>
+                </td>
+                <td>
+                    <audio controls class="audio-player">
+                        <source src="reference_2.wav" type="audio/wav">
+                    </audio>
+                    <button class="download-btn" onclick="downloadAudio('reference_2.wav')">Download</button>
+                </td>
+            </tr>
+        </table>
     </div>
 
     <script>
-        // Function to play audio
-        function playAudio(id) {
-            var audio = document.getElementById(id);
-            audio.play();
-        }
-
-        // Function to download audio
-        function downloadAudio(id) {
-            var audio = document.getElementById(id);
-            var link = document.createElement('a');
-            link.href = audio.src;
-            link.download = audio.src.split('/').pop();
-            link.click();
+        // 下载音频功能
+        function downloadAudio(fileName) {
+            const audioElement = document.createElement('a');
+            audioElement.href = fileName;
+            audioElement.download = fileName;
+            document.body.appendChild(audioElement);
+            audioElement.click();
+            document.body.removeChild(audioElement);
         }
     </script>
-
 </body>
 </html>
