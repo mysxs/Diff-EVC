@@ -40,7 +40,7 @@
         }
         .audio-demo {
             display: grid;
-            grid-template-columns: repeat(7, 1fr);
+            grid-template-columns: repeat(8, 1fr);
             gap: 10px;
             justify-items: center;
         }
@@ -72,6 +72,19 @@
             margin-left: 10px;
             width: 300px;
         }
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 30px;
+        }
+        .table th, .table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+        .table th {
+            background-color: #f4f4f4;
+        }
     </style>
 </head>
 <body>
@@ -84,42 +97,58 @@
     </div>
 
     <div class="section">
-        <h2>This page shows the samples in the paper "StableVC: Style Controllable Zero-Shot Voice Conversion with Conditional Flow Matchings".</h2>
+        <h2>1. Audio Demo for Emotional Voice Conversion (EVC)</h2>
 
-        <h3 class="sub-title">Abstract</h3>
-        <p>
-            Zero-shot voice conversion (VC) aims to transfer the timbre from the source speaker to an arbitrary unseen speaker while preserving the original linguistic content. Despite recent advancements in zero-shot VC using language model-based or diffusion-based approaches, several challenges remain...
-        </p>
-
-        <h3 class="sub-title">Proposed Approach</h3>
-        <p>Explanation of the proposed approach for StableVC...</p>
-
-        <h3 class="sub-title">1. Zero-shot Voice Conversion</h3>
-        <div class="audio-player">
-            <div>Audio Example:</div>
-            <audio controls>
-                <source src="audio_example.mp3" type="audio/mp3">
-                Your browser does not support the audio element.
-            </audio>
-        </div>
+        <h3 class="sub-title">Neutral to Angry</h3>
         <div class="audio-demo">
-            <button disabled>Source</button>
-            <button disabled>Target</button>
-            <button class="play-btn">StyleVC</button>
-            <button class="play-btn">Valle-VC</button>
-            <button class="play-btn">LMVC</button>
-            <button class="play-btn">NS2VC</button>
-            <button class="play-btn">DDDMVC</button>
-            <button class="play-btn">SEFVC</button>
-            <button class="play-btn">StableVC</button>
+            <button>-</button>
+            <button>-</button>
+            <button>-</button>
+            <button>-</button>
+            <button>-</button>
+            <button>-</button>
+            <button>-</button>
+            <button>-</button>
+            <button>-</button>
         </div>
 
-        <h3 class="sub-title">2. Style Transfer</h3>
+        <h3 class="sub-title">Neutral to Happy</h3>
         <div class="audio-demo">
-            <button class="play-btn">Source</button>
-            <button class="play-btn">Timbre Prompt</button>
-            <button class="play-btn">Style Prompt</button>
-            <button class="play-btn">Converted</button>
+            <button>-</button>
+            <button>-</button>
+            <button>-</button>
+            <button>-</button>
+            <button>-</button>
+            <button>-</button>
+            <button>-</button>
+            <button>-</button>
+            <button>-</button>
+        </div>
+
+        <h3 class="sub-title">Neutral to Sad</h3>
+        <div class="audio-demo">
+            <button>-</button>
+            <button>-</button>
+            <button>-</button>
+            <button>-</button>
+            <button>-</button>
+            <button>-</button>
+            <button>-</button>
+            <button>-</button>
+            <button>-</button>
+        </div>
+
+        <h3 class="sub-title">Neutral to Surprise</h3>
+        <div class="audio-demo">
+            <button>-</button>
+            <button>-</button>
+            <button>-</button>
+            <button>-</button>
+            <button>-</button>
+            <button>-</button>
+            <button>-</button>
+            <button>-</button>
+            <button>-</button>
         </div>
     </div>
 
