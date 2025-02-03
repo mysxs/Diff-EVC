@@ -3,17 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>StableVC: Style Controllable Zero-Shot Voice Conversion</title>
+    <title>Any-to-Any EVC</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            color: #333;
+            color: black;
+            background-color: #f0f0f0;
         }
         .header {
-            background-color: #4b4b4b;
-            color: white;
+            background-color: #808080; /* Gray background */
+            color: black;
             padding: 40px 10%;
             text-align: center;
         }
@@ -40,13 +41,13 @@
         }
         .audio-demo {
             display: grid;
-            grid-template-columns: repeat(8, 1fr);
+            grid-template-columns: repeat(9, 1fr);
             gap: 10px;
             justify-items: center;
         }
         .audio-demo button {
-            background-color: #fff;
-            color: #333;
+            background-color: #ffffff;
+            color: black;
             border: 1px solid #ccc;
             border-radius: 5px;
             padding: 10px 20px;
@@ -58,7 +59,7 @@
             cursor: not-allowed;
         }
         .audio-demo .play-btn {
-            background-color: #4b4b4b;
+            background-color: #808080;
             color: white;
             border-radius: 5px;
             padding: 8px 15px;
@@ -90,10 +91,10 @@
 <body>
 
     <div class="header">
-        <h1>StableVC: Style Controllable Zero-Shot Voice Conversion with Conditional Flow Matching</h1>
-        <p>Jixun Yao, Yang Yuguang, Yu Pan, Ziqian Ning, Jianhao Ye, Hongbin Zhou, Lei Xie</p>
-        <p>1. Audio, Speech and Language Processing Group (ASLP@NPU)</p>
-        <p>2. Himalaya Inc, China</p>
+        <h1>Any-to-Any-EVC</h1>
+        <p>Hsing-Hang Chou, Yun-Shao Lin, Ching-Chin Sun, Yu Tsao, Chi-Chun Lee</p>
+        <p>1. Department of Electrical Engineering, National Tsing Hua University, Taiwan</p>
+        <p>2. Center for Information Technology Innovation, Academia Sinica, Taiwan</p>
     </div>
 
     <div class="section">
@@ -101,56 +102,81 @@
 
         <h3 class="sub-title">Neutral to Angry</h3>
         <div class="audio-demo">
-            <button>-</button>
-            <button>-</button>
-            <button>-</button>
-            <button>-</button>
-            <button>-</button>
-            <button>-</button>
-            <button>-</button>
-            <button>-</button>
-            <button>-</button>
+            <button onclick="playAudio('audio1')">Play</button>
+            <button onclick="downloadAudio('audio1')">Download</button>
+            <button onclick="muteAudio('audio1')">Mute</button>
+            <button onclick="adjustSpeed('audio1', 0.5)">0.5x Speed</button>
+            <button onclick="adjustSpeed('audio1', 1)">1x Speed</button>
+            <button onclick="adjustSpeed('audio1', 1.5)">1.5x Speed</button>
+            <button onclick="adjustSpeed('audio1', 2)">2x Speed</button>
+            <audio id="audio1" src="your_audio_file.mp3"></audio>
         </div>
 
         <h3 class="sub-title">Neutral to Happy</h3>
         <div class="audio-demo">
-            <button>-</button>
-            <button>-</button>
-            <button>-</button>
-            <button>-</button>
-            <button>-</button>
-            <button>-</button>
-            <button>-</button>
-            <button>-</button>
-            <button>-</button>
+            <button onclick="playAudio('audio2')">Play</button>
+            <button onclick="downloadAudio('audio2')">Download</button>
+            <button onclick="muteAudio('audio2')">Mute</button>
+            <button onclick="adjustSpeed('audio2', 0.5)">0.5x Speed</button>
+            <button onclick="adjustSpeed('audio2', 1)">1x Speed</button>
+            <button onclick="adjustSpeed('audio2', 1.5)">1.5x Speed</button>
+            <button onclick="adjustSpeed('audio2', 2)">2x Speed</button>
+            <audio id="audio2" src="your_audio_file.mp3"></audio>
         </div>
 
         <h3 class="sub-title">Neutral to Sad</h3>
         <div class="audio-demo">
-            <button>-</button>
-            <button>-</button>
-            <button>-</button>
-            <button>-</button>
-            <button>-</button>
-            <button>-</button>
-            <button>-</button>
-            <button>-</button>
-            <button>-</button>
+            <button onclick="playAudio('audio3')">Play</button>
+            <button onclick="downloadAudio('audio3')">Download</button>
+            <button onclick="muteAudio('audio3')">Mute</button>
+            <button onclick="adjustSpeed('audio3', 0.5)">0.5x Speed</button>
+            <button onclick="adjustSpeed('audio3', 1)">1x Speed</button>
+            <button onclick="adjustSpeed('audio3', 1.5)">1.5x Speed</button>
+            <button onclick="adjustSpeed('audio3', 2)">2x Speed</button>
+            <audio id="audio3" src="your_audio_file.mp3"></audio>
         </div>
 
         <h3 class="sub-title">Neutral to Surprise</h3>
         <div class="audio-demo">
-            <button>-</button>
-            <button>-</button>
-            <button>-</button>
-            <button>-</button>
-            <button>-</button>
-            <button>-</button>
-            <button>-</button>
-            <button>-</button>
-            <button>-</button>
+            <button onclick="playAudio('audio4')">Play</button>
+            <button onclick="downloadAudio('audio4')">Download</button>
+            <button onclick="muteAudio('audio4')">Mute</button>
+            <button onclick="adjustSpeed('audio4', 0.5)">0.5x Speed</button>
+            <button onclick="adjustSpeed('audio4', 1)">1x Speed</button>
+            <button onclick="adjustSpeed('audio4', 1.5)">1.5x Speed</button>
+            <button onclick="adjustSpeed('audio4', 2)">2x Speed</button>
+            <audio id="audio4" src="your_audio_file.mp3"></audio>
         </div>
     </div>
+
+    <script>
+        // Function to play audio
+        function playAudio(id) {
+            var audio = document.getElementById(id);
+            audio.play();
+        }
+
+        // Function to download audio
+        function downloadAudio(id) {
+            var audio = document.getElementById(id);
+            var link = document.createElement('a');
+            link.href = audio.src;
+            link.download = audio.src.split('/').pop();
+            link.click();
+        }
+
+        // Function to mute/unmute audio
+        function muteAudio(id) {
+            var audio = document.getElementById(id);
+            audio.muted = !audio.muted;
+        }
+
+        // Function to adjust playback speed
+        function adjustSpeed(id, speed) {
+            var audio = document.getElementById(id);
+            audio.playbackRate = speed;
+        }
+    </script>
 
 </body>
 </html>
