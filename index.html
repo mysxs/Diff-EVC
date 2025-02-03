@@ -3,35 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Any-to-Any EVC</title>
+    <title>StableVC: Style Controllable Zero-Shot Voice Conversion</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #1a4e3d;
-            color: white;
+            color: #333;
         }
         .header {
+            background-color: #4b4b4b;
+            color: white;
+            padding: 40px 10%;
             text-align: center;
-            padding: 50px 0;
-            background-color: #1a4e3d;
         }
         .header h1 {
-            font-size: 36px;
+            font-size: 32px;
             margin: 0;
         }
-        .header h2 {
+        .header p {
             font-size: 18px;
-            margin-top: 10px;
+            margin: 10px 0;
         }
         .section {
             padding: 40px 10%;
         }
         .section h2 {
-            font-size: 24px;
+            font-size: 28px;
             margin-bottom: 20px;
             text-align: center;
+        }
+        .section .sub-title {
+            font-size: 20px;
+            margin-bottom: 10px;
+            margin-top: 30px;
         }
         .audio-demo {
             display: grid;
@@ -40,9 +45,9 @@
             justify-items: center;
         }
         .audio-demo button {
-            background-color: #ffffff;
-            color: #1a4e3d;
-            border: none;
+            background-color: #fff;
+            color: #333;
+            border: 1px solid #ccc;
             border-radius: 5px;
             padding: 10px 20px;
             cursor: pointer;
@@ -50,45 +55,71 @@
         .audio-demo button:disabled {
             background-color: #f0f0f0;
             color: #888;
+            cursor: not-allowed;
+        }
+        .audio-demo .play-btn {
+            background-color: #4b4b4b;
+            color: white;
+            border-radius: 5px;
+            padding: 8px 15px;
+        }
+        .audio-player {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .audio-player audio {
+            margin-left: 10px;
+            width: 300px;
         }
     </style>
 </head>
 <body>
 
     <div class="header">
-        <h1>Any-to-Any-EVC</h1>
-        <h2>Hsing-Hang Chou, Yun-Shao Lin, Ching-Chin Sun, Yu Tsao, Chi-Chun Lee</h2>
-        <p>Department of Electrical Engineering, National Tsing Hua University, Taiwan</p>
-        <p>Center for Information Technology Innovation, Academia Sinica, Taiwan</p>
+        <h1>StableVC: Style Controllable Zero-Shot Voice Conversion with Conditional Flow Matching</h1>
+        <p>Jixun Yao, Yang Yuguang, Yu Pan, Ziqian Ning, Jianhao Ye, Hongbin Zhou, Lei Xie</p>
+        <p>1. Audio, Speech and Language Processing Group (ASLP@NPU)</p>
+        <p>2. Himalaya Inc, China</p>
     </div>
 
     <div class="section">
-        <h2>Audio Demo for Emotional Voice Conversion (EVC)</h2>
+        <h2>This page shows the samples in the paper "StableVC: Style Controllable Zero-Shot Voice Conversion with Conditional Flow Matchings".</h2>
 
-        <h3>Neutral to Angry</h3>
+        <h3 class="sub-title">Abstract</h3>
+        <p>
+            Zero-shot voice conversion (VC) aims to transfer the timbre from the source speaker to an arbitrary unseen speaker while preserving the original linguistic content. Despite recent advancements in zero-shot VC using language model-based or diffusion-based approaches, several challenges remain...
+        </p>
+
+        <h3 class="sub-title">Proposed Approach</h3>
+        <p>Explanation of the proposed approach for StableVC...</p>
+
+        <h3 class="sub-title">1. Zero-shot Voice Conversion</h3>
+        <div class="audio-player">
+            <div>Audio Example:</div>
+            <audio controls>
+                <source src="audio_example.mp3" type="audio/mp3">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
         <div class="audio-demo">
-            <button disabled>Neutral</button>
-            <button disabled>CycleGAN-EVC</button>
-            <button disabled>StarGAN-EVC</button>
-            <button disabled>Seq2Seq-EVC</button>
-            <button disabled>Emovox</button>
-            <button>Prosody2Vec</button>
-            <button>Ours</button>
+            <button disabled>Source</button>
             <button disabled>Target</button>
-            <button disabled>Reference</button>
+            <button class="play-btn">StyleVC</button>
+            <button class="play-btn">Valle-VC</button>
+            <button class="play-btn">LMVC</button>
+            <button class="play-btn">NS2VC</button>
+            <button class="play-btn">DDDMVC</button>
+            <button class="play-btn">SEFVC</button>
+            <button class="play-btn">StableVC</button>
         </div>
 
-        <h3>Neutral to Happy</h3>
+        <h3 class="sub-title">2. Style Transfer</h3>
         <div class="audio-demo">
-            <button disabled>Neutral</button>
-            <button disabled>CycleGAN-EVC</button>
-            <button disabled>StarGAN-EVC</button>
-            <button disabled>Seq2Seq-EVC</button>
-            <button disabled>Emovox</button>
-            <button>Prosody2Vec</button>
-            <button>Ours</button>
-            <button disabled>Target</button>
-            <button disabled>Reference</button>
+            <button class="play-btn">Source</button>
+            <button class="play-btn">Timbre Prompt</button>
+            <button class="play-btn">Style Prompt</button>
+            <button class="play-btn">Converted</button>
         </div>
     </div>
 
