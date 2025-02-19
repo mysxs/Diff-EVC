@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>StableVC: Style Controllable Zero-Shot Voice Conversion</title>
+    <title>DiffEmotionVC: A Dual-Granularity Disentangled Diffusion Framework for Any-to-Any Emotional Voice Conversion</title>
     <style>
         /* 基础样式 */
         body {
@@ -130,16 +130,10 @@
         <!-- 论文介绍 -->
         <div class="paper-intro">
             <h1>StableVC: Style Controllable Zero-Shot Voice Conversion with Conditional Flow Matching</h1>
-            <p>Jixun Yao, Yang Yugang, Yu Pan, Ziqian Ning, Jianhao Ye, Hongbin Zhou, Lei Xie</p>
-            <p>1.Audio, Speech and Language Processing Group (ASLP@NPU)</p>
-            <p>School of Computer Science, Northwestern Polytechnical University, Xi'an, China</p>
-            <p>2.Ximalaya Inc, China</p>
-
             <div class="abstract">
                 <h2>Abstract</h2>
                 <p>
-                    Zero-shot voice conversion (VC) aims to transfer the timbre from the source speaker to an arbitrary unseen speaker while preserving the original linguistic content. Despite recent advancements in zero-shot VC using language models or diffusion-based approaches, several challenges remain: 1) current approaches primarily focus on adapting timbre from unseen speakers and are unable to transfer style and timbre to different unseen speakers independently; 2) these approaches often suffer from slower inference speeds due to the autoregressive modeling methods or the need for numerous sampling steps; 3) the quality and similarity of the converted samples are still not fully satisfactory. To address these challenges, we propose a Stable controllable zero-shot VC approach named StableVC, which aims to transfer timbre and style from source speech to unseen target speakers. Specifically, we decompose speech into linguistic content, timbre, and style, and then employ a conditional flow matching module to reconstruct the high-quality mel-spectrogram based on these decomposed features. To effectively capture timbre and style in a zero-shot manner, we introduce a novel dual attention mechanism with an adaptive gate, rather than using conventional feature concatenation. With this non-autoregressive design, StableVC can efficiently capture the intricate timbre and style from different unseen speakers and generate high-quality speech significantly faster than real-time. Experiments demonstrate that our proposed StableVC outperforms state-of-the-art baseline systems in zero-shot VC and achieves flexible control over timbre and style from different unseen speakers. Moreover, StableVC offers approximately 25x and 1.65x faster sampling compared to autoregressive and diffusion-based baselines.
-                </p>
+                    Emotional Voice Conversion (EVC) plays a vital role in improving human-computer interaction but faces challenges due to the complexity of emotion features, which are entangled with speaker and content characteristics. To overcome these challenges, we propose DiffEmotionVC, a diffusion-based framework for any-to-any EVC. Our approach integrates a dual-granularity emotion encoder that captures both utterance-level emotional context and frame-level acoustic details. It also employs an orthogonality-constrained condition encoder that disentangles emotion features through gated cross-attention while preserving feature independence with an orthogonal loss. Additionally, multi-objective diffusion training enhances both reconstruction fidelity and emotion discriminability via contrastive learning. Experimental results show a UTMOS score of 4.04 and 80% emotion recognition accuracy, demonstrating the framework's effectiveness in speech quality and optimizing emotional expression.
             </div>
         </div>
 
@@ -147,7 +141,7 @@
         <div class="model-image">
             <img src="model_architecture.png" alt="StableVC Model Architecture">
             <div class="caption">
-                <p><strong>Figure 1:</strong> The overall framework of StableVC includes three feature extractors for style, linguistic content, and mel-spectrogram extraction. It also incorporates a content module and a duration module to re-predict the duration based on different styles and timbres, and a flow matching module generates high-quality speech by optimizing the feature alignment.</p>
+                <p><strong>Figure 1:</strong> The overview of the DiffEmotionVC framework includes three feature extractors and encoders for speaker, emotion, and content. It also incorporates a condition encoder that fuses these features using a cross-attention mechanism, maintains feature independence through orthogonal constraints, and utilizes a diffusion module to generate high-quality speech, where (a) represents the speaker encoder, and (b) represents the emotion encoder.</p>
             </div>
         </div>
 
