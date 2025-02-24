@@ -610,9 +610,13 @@
         <!-- The impact of different content extraction methods on emotion features -->
 <h2>The Impact of Different Content Extraction Methods on Emotion Features</h2>
 <div class="paper-intro">
+    <div class="abstract">
+        <p>
+            We compare different content extraction methods to evaluate their impact on emotion feature quality. The metrics include emotion recognition accuracy (%) and speech quality (UTMOS score).
+        </p>
+    </div>
 </div>
 
-<!-- 表格展示 -->
 <table class="demo-table">
     <tr>
         <th>Method</th>
@@ -621,32 +625,67 @@
     </tr>
     <tr>
         <td>Our(ContentVec)</td>
-        <td>75%</td>
-        <td>3.85</td>
+        <td>
+            <div class="music-outer">
+                <audio class="contentvec-sample1" controls src="./contentvec_sample1.wav"></audio>
+            </div>
+        </td>
+        <td>
+            <div class="music-outer">
+                <audio class="contentvec-sample2" controls src="./contentvec_sample2.wav"></audio>
+            </div>
+        </td>
     </tr>
     <tr>
         <td>ContentVec → Whisper</td>
-        <td>80%</td>
-        <td>4.02</td>
+        <td>
+            <div class="music-outer">
+                <audio class="whisper-sample1" controls src="./whisper_sample1.wav"></audio>
+            </div>
+        </td>
+        <td>
+            <div class="music-outer">
+                <audio class="whisper-sample2" controls src="./whisper_sample2.wav"></audio>
+            </div>
+        </td>
     </tr>
     <tr>
         <td>ContentVec → VQ-ContentVec</td>
-        <td>78%</td>
-        <td>3.95</td>
+        <td>
+            <div class="music-outer">
+                <audio class="vq-contentvec-sample1" controls src="./vq_contentvec_sample1.wav"></audio>
+            </div>
+        </td>
+        <td>
+            <div class="music-outer">
+                <audio class="vq-contentvec-sample2" controls src="./vq_contentvec_sample2.wav"></audio>
+            </div>
+        </td>
     </tr>
-     <tr>
+    <tr>
         <td>ContentVec → Speechtokenize</td>
-        <td>78%</td>
-        <td>3.95</td>
+        <td>
+            <div class="music-outer">
+                <audio class="speechtokenize-sample1" controls src="./speechtokenize_sample1.wav"></audio>
+            </div>
+        </td>
+        <td>
+            <div class="music-outer">
+                <audio class="speechtokenize-sample2" controls src="./speechtokenize_sample2.wav"></audio>
+            </div>
+        </td>
     </tr>
 </table>
-
         <!-- Ablation Studies -->
 <h2>Ablation Studies</h2>
 <div class="paper-intro">
+    <div class="abstract">
+        <p>
+            Ablation studies demonstrate the contribution of key components in our framework. Removing the speaker encoder, emotion encoder, or specific loss functions significantly degrades performance.
+        </p>
+    </div>
 </div>
 
-<!-- 表格展示 -->
 <table class="demo-table">
     <tr>
         <th>Method</th>
@@ -655,58 +694,106 @@
     </tr>
     <tr>
         <td>Our (cross-attention)</td>
-        <td>65%</td>
-        <td>3.50</td>
+        <td>
+            <div class="music-outer">
+                <audio class="cross-attention-sample1" controls src="./cross_attention_sample1.wav"></audio>
+            </div>
+        </td>
+        <td>
+            <div class="music-outer">
+                <audio class="cross-attention-sample2" controls src="./cross_attention_sample2.wav"></audio>
+            </div>
+        </td>
     </tr>
     <tr>
         <td>w/o speaker encoder</td>
-        <td>65%</td>
-        <td>3.50</td>
+        <td>
+            <div class="music-outer">
+                <audio class="wo-speaker-sample1" controls src="./wo_speaker_sample1.wav"></audio>
+            </div>
+        </td>
+        <td>
+            <div class="music-outer">
+                <audio class="wo-speaker-sample2" controls src="./wo_speaker_sample2.wav"></audio>
+            </div>
+        </td>
     </tr>
     <tr>
         <td>w/o emotion encoder</td>
-        <td>65%</td>
-        <td>3.50</td>
+        <td>
+            <div class="music-outer">
+                <audio class="wo-emotion-sample1" controls src="./wo_emotion_sample1.wav"></audio>
+            </div>
+        </td>
+        <td>
+            <div class="music-outer">
+                <audio class="wo-emotion-sample2" controls src="./wo_emotion_sample2.wav"></audio>
+            </div>
+        </td>
     </tr>
     <tr>
         <td>w/o contrast loss</td>
-        <td>70%</td>
-        <td>3.60</td>
+        <td>
+            <div class="music-outer">
+                <audio class="wo-contrast-sample1" controls src="./wo_contrast_sample1.wav"></audio>
+            </div>
+        </td>
+        <td>
+            <div class="music-outer">
+                <audio class="wo-contrast-sample2" controls src="./wo_contrast_sample2.wav"></audio>
+            </div>
+        </td>
     </tr>
     <tr>
         <td>w/o ortho loss</td>
-        <td>60%</td>
-        <td>3.40</td>
+        <td>
+            <div class="music-outer">
+                <audio class="wo-ortho-sample1" controls src="./wo_ortho_sample1.wav"></audio>
+            </div>
+        </td>
+        <td>
+            <div class="music-outer">
+                <audio class="wo-ortho-sample2" controls src="./wo_ortho_sample2.wav"></audio>
+            </div>
+        </td>
     </tr>
-     <tr>
+    <tr>
         <td>cross-attention → add</td>
-        <td>60%</td>
-        <td>3.40</td>
+        <td>
+            <div class="music-outer">
+                <audio class="add-cross-attention-sample1" controls src="./add_cross_attention_sample1.wav"></audio>
+            </div>
+        </td>
+        <td>
+            <div class="music-outer">
+                <audio class="add-cross-attention-sample2" controls src="./add_cross_attention_sample2.wav"></audio>
+            </div>
+        </td>
     </tr>
-    
 </table>
         
     </div>
 
+            /* 音频播放器样式 */
+        .music-outer audio {
+            width: 100%;
+            max-width: 200px;
+            margin: 5px 0;
+        }
+        
+        /* 表格单元格内音频居中 */
+        .demo-table td {
+            vertical-align: middle;
+        }
     <script>
         // 播放音频功能
-        // function playAudio(audioId) {
-        //     const audioElement = document.getElementById(audioId);
-        //     if (audioElement) {
-        //         if (audioElement.paused) {
-        //             audioElement.play().catch((error) => {
-        //                 console.error("Error playing audio:", error);
-        //             });
-        //         } else {
-        //             audioElement.pause();
-        //         }
-        //     }
-        // }
-                function playAudio(audioId) {
+        function playAudio(audioId) {
             const audioElement = document.getElementById(audioId);
             if (audioElement) {
                 if (audioElement.paused) {
-                    audioElement.play();
+                    audioElement.play().catch((error) => {
+                        console.error("Error playing audio:", error);
+                    });
                 } else {
                     audioElement.pause();
                 }
