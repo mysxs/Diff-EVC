@@ -550,17 +550,22 @@
         <th>Speech Quality (UTMOS)</th>
     </tr>
     <tr>
-        <td>Method A</td>
+        <td>Our(ContentVec)</td>
         <td>75%</td>
         <td>3.85</td>
     </tr>
     <tr>
-        <td>Method B</td>
+        <td>ContentVec → Whisper</td>
         <td>80%</td>
         <td>4.02</td>
     </tr>
     <tr>
-        <td>Method C</td>
+        <td>ContentVec → VQ-ContentVec</td>
+        <td>78%</td>
+        <td>3.95</td>
+    </tr>
+     <tr>
+        <td>ContentVec → Speechtokenize</td>
         <td>78%</td>
         <td>3.95</td>
     </tr>
@@ -574,25 +579,31 @@
 <!-- 表格展示 -->
 <table class="demo-table">
     <tr>
-        <th>Component Removed</th>
-        <th>Emotion Recognition Accuracy</th>
+        <th>Method</th>
+        <th>Our (cross-attention) </th>
         <th>Speech Quality (UTMOS)</th>
     </tr>
     <tr>
-        <td>Emotion Encoder</td>
+        <td>w/o speaker encoder</td>
         <td>65%</td>
         <td>3.50</td>
     </tr>
     <tr>
-        <td>Content Encoder</td>
+        <td>w/o contrast loss</td>
         <td>70%</td>
         <td>3.60</td>
     </tr>
     <tr>
-        <td>Diffusion Module</td>
+        <td>w/o ortho loss</td>
         <td>60%</td>
         <td>3.40</td>
     </tr>
+     <tr>
+        <td>cross-attention → add</td>
+        <td>60%</td>
+        <td>3.40</td>
+    </tr>
+    
 </table>
 
 
