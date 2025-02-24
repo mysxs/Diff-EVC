@@ -690,13 +690,23 @@
 
     <script>
         // 播放音频功能
-        function playAudio(audioId) {
+        // function playAudio(audioId) {
+        //     const audioElement = document.getElementById(audioId);
+        //     if (audioElement) {
+        //         if (audioElement.paused) {
+        //             audioElement.play().catch((error) => {
+        //                 console.error("Error playing audio:", error);
+        //             });
+        //         } else {
+        //             audioElement.pause();
+        //         }
+        //     }
+        // }
+                function playAudio(audioId) {
             const audioElement = document.getElementById(audioId);
             if (audioElement) {
                 if (audioElement.paused) {
-                    audioElement.play().catch((error) => {
-                        console.error("Error playing audio:", error);
-                    });
+                    audioElement.play();
                 } else {
                     audioElement.pause();
                 }
