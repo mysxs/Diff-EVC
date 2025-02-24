@@ -21,26 +21,27 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
-        /* 统一的节样式 */
-        .section {
+        /* 论文介绍样式 */
+        .paper-intro {
+            text-align: center;
             margin-bottom: 40px;
         }
 
-        .section h2 {
-            font-size: 2em;
+        .paper-intro h1 {
+            font-size: 2.5em;
             color: #333;
             margin-bottom: 10px;
         }
 
-        .section p {
+        .paper-intro p {
             font-size: 1.2em;
             color: #666;
             margin-bottom: 20px;
         }
 
-        /* 摘要样式 */
-        .abstract {
+        .paper-intro .abstract {
             text-align: left;
+            margin-top: 30px;
             padding: 20px;
             background: #f8f9ff;
             border-radius: 10px;
@@ -127,18 +128,17 @@
 <body>
     <div class="container">
         <!-- 论文介绍 -->
-        <div class="section">
-            <h2>DiffEmotionVC: A Dual-Granularity Disentangled Diffusion Framework for Any-to-Any Emotional Voice Conversion</h2>
+        <div class="paper-intro">
+            <h1>DiffEmotionVC: A Dual-Granularity Disentangled Diffusion Framework for Any-to-Any Emotional Voice Conversion</h1>
             <div class="abstract">
-                <h3>Abstract</h3>
+                <h2>Abstract</h2>
                 <p>
                     Emotional Voice Conversion (EVC) plays a vital role in improving human-computer interaction but faces challenges due to the complexity of emotion features, which are entangled with speaker and content characteristics. To overcome these challenges, we propose DiffEmotionVC, a diffusion-based framework for any-to-any EVC. Our approach integrates a dual-granularity emotion encoder that captures both utterance-level emotional context and frame-level acoustic details. It also employs an orthogonality-constrained condition encoder that disentangles emotion features through gated cross-attention while preserving feature independence with an orthogonal loss. Additionally, multi-objective diffusion training enhances both reconstruction fidelity and emotion discriminability via contrastive learning. Experimental results show a UTMOS score of 4.04 and 80% emotion recognition accuracy, demonstrating the framework's effectiveness in speech quality and optimizing emotional expression.
-                </p>
             </div>
         </div>
 
         <!-- 模型框架图片 -->
-        <div class="section">
+        <div class="model-container">
             <h2>DiffEmotionVC Model Architecture</h2>
             <div class="model-image">
                 <img src="38.png" alt="DiffEmotionVC Model Architecture">
@@ -149,73 +149,479 @@
         </div>
 
         <!-- 音频demo展示 -->
-        <div class="section">
-            <h2>Experimental Results on Emotional Voice Conversion</h2>
+        <h2>Experimental Results on Emotional Voice Conversion</h2>
+        
+        <!-- Neutral to Angry -->
+        <h3>Neutral to Angry</h3>
+        <table class="demo-table">
+            <tr>
+                <th>Neutral</th>
+                <th>CycleGAN-EVC</th>
+                <th>StarGAN-EVC</th>
+                <th>Seq2Seq-EVC</th>
+                <th>Emovox</th>
+                <th>Prosody2Vec</th>
+                <th>Ours</th>
+                <th>Target</th>
+                <th>Reference</th>
+            </tr>
+            <tr>
+                <td>
+                    <div class="music-outer">
+                        a1<audio class="neu-ang-1 show-audio" controlslist="noplaybackrate" controls src="./Source_n2a_1.wav"></audio>
+                    </div>
+                    
+                </td>
+                <td>
+                    <div class="music-outer">
+                    a2<audio class="neu-ang-1-CycleGAN-EVC show-audio" controlslist="noplaybackrate" controls src="./CycleGAN_EVC_n2a_1.wav"></audio>
+                    </div>
+                </td>
+                <td>
+                    <div class="music-outer">
+                    a3<audio class="neu-ang-1-stargan show-audio" controlslist="noplaybackrate" controls src="./StarGAN_EVC_n2a_1.wav"></audio>
+                    </div>
+                </td>
+                <td>
+                    <div class="music-outer">
+                    a4<audio class="neu-ang-1-seq2seq show-audio" controlslist="noplaybackrate" controls src="./Seq2Seq_EVC_n2a_1.wav"></audio></div>
+                </td>
+                <td>
+                    <div class="music-outer">
+                    a5<audio class="neu-ang-1-emovox show-audio" controlslist="noplaybackrate" controls src="./Emovox_n2a_1.wav"></audio></div>
+                </td>
+                <td>
+                    <div class="music-outer">
+                    a6<audio class="neu-ang-1-prosody2vec show-audio" controlslist="noplaybackrate" controls src="./Prosody2Vec_n2a_1.wav"></audio></div>
+                </td>
+                <td>
+                    <div class="music-outer">
+                    a7<audio class="neu-ang-1-ours show-audio" controlslist="noplaybackrate" controls src="./Ours_n2a_1.wav"></audio></div>
+                </td>
+                <td>
+                    <div class="music-outer">
+                    a8<audio class="neu-ang-1-target show-audio" controlslist="noplaybackrate" controls src="./0013_000362.wav"></audio></div>
+                </td>
+                <td rowspan="3">
+                    <div class="music-outer">
+                    a9<audio class="neu-ang-1-reference show-audio" controlslist="noplaybackrate" controls src="./0013_000643.wav"></audio></div>
+                </td>
+            </tr>
 
-            <!-- Neutral to Angry -->
-            <h3>Neutral to Angry</h3>
-            <table class="demo-table">
-                <tr>
-                    <th>Neutral</th>
-                    <th>CycleGAN-EVC</th>
-                    <th>StarGAN-EVC</th>
-                    <th>Seq2Seq-EVC</th>
-                    <th>Emovox</th>
-                    <th>Prosody2Vec</th>
-                    <th>Ours</th>
-                    <th>Target</th>
-                    <th>Reference</th>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="music-outer">
-                            a1<audio class="neu-ang-1 show-audio" controlslist="noplaybackrate" controls src="./Source_n2a_1.wav"></audio>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="music-outer">
-                            a2<audio class="neu-ang-1-CycleGAN-EVC show-audio" controlslist="noplaybackrate" controls src="./CycleGAN_EVC_n2a_1.wav"></audio>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="music-outer">
-                            a3<audio class="neu-ang-1-stargan show-audio" controlslist="noplaybackrate" controls src="./StarGAN_EVC_n2a_1.wav"></audio>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="music-outer">
-                            a4<audio class="neu-ang-1-seq2seq show-audio" controlslist="noplaybackrate" controls src="./Seq2Seq_EVC_n2a_1.wav"></audio></div>
-                    </td>
-                    <td>
-                        <div class="music-outer">
-                            a5<audio class="neu-ang-1-emovox show-audio" controlslist="noplaybackrate" controls src="./Emovox_n2a_1.wav"></audio></div>
-                    </td>
-                    <td>
-                        <div class="music-outer">
-                            a6<audio class="neu-ang-1-prosody2vec show-audio" controlslist="noplaybackrate" controls src="./Prosody2Vec_n2a_1.wav"></audio></div>
-                    </td>
-                    <td>
-                        <div class="music-outer">
-                            a7<audio class="neu-ang-1-ours show-audio" controlslist="noplaybackrate" controls src="./Ours_n2a_1.wav"></audio></div>
-                    </td>
-                    <td>
-                        <div class="music-outer">
-                            a8<audio class="neu-ang-1-target show-audio" controlslist="noplaybackrate" controls src="./0013_000362.wav"></audio></div>
-                    </td>
-                    <td rowspan="3">
-                        <div class="music-outer">
-                            a9<audio class="neu-ang-1-reference show-audio" controlslist="noplaybackrate" controls src="./0013_000643.wav"></audio></div>
-                    </td>
-                </tr>
-                <!-- Add more audio rows as needed -->
-            </table>
-        </div>
 
-        <!-- 其他内容 -->
+                
+            <tr>
+                <td>
+                    <div class="music-outer">
+                    b1<audio class="neu-ang-2 show-audio" controlslist="noplaybackrate" controls src="./Source_n2a_2.wav"></audio></div>
+                </td>
+                <td>
+                    <div class="music-outer">
+                    b2<audio class="neu-ang-2-CycleGAN-EVC show-audio" controlslist="noplaybackrate" controls src="./CycleGAN_EVC_n2a_2.wav"></audio></div>
+                </td>
+                <td>
+                    <div class="music-outer">
+                    b3<audio class="neu-ang-2-stargan show-audio" controlslist="noplaybackrate" controls src="./StarGAN_EVC_n2a_2.wav"></audio></div>
+                </td>
+                <td>
+                    <div class="music-outer">
+                    b4<audio class="neu-ang-2-seq2seq show-audio" controlslist="noplaybackrate" controls src="./Seq2Seq_EVC_n2a_2.wav"></audio></div>
+                </td>
+                <td>
+                    <div class="music-outer">
+                   b5<audio class="neu-ang-2-emovox show-audio" controlslist="noplaybackrate" controls src="./Emovox_n2a_2.wav"></audio></div>
+                </td>
+                <td>
+                    <div class="music-outer">
+                   b6<audio class="neu-ang-2-prosody2vec show-audio" controlslist="noplaybackrate" controls src="./Prosody2Vec_n2a_2.wav"></audio></div>
+                </td>
+                <td>
+                    <div class="music-outer">
+                    b7<audio class="neu-ang-2-ours show-audio" controlslist="noplaybackrate" controls src="./Ours_n2a_2.wav"></audio></div>
+                </td>
+                <td>
+                    <div class="music-outer">
+                    b8<audio class="neu-ang-2-target show-audio" controlslist="noplaybackrate" controls src="./0013_000367.wav"></audio></div>
+                </td>
+
+
+                
+                
+            </tr>
+            <tr>
+                <td>
+                    <div class="music-outer">
+                    c1<audio class="neu-ang-3 show-audio" controlslist="noplaybackrate" controls src="./Source_n2a_3.wav"></audio></div>
+                </td>
+                <td>
+                    <div class="music-outer">
+                    c2<audio class="neu-ang-3-CycleGAN-EVC show-audio" controlslist="noplaybackrate" controls src="./CycleGAN_EVC_n2a_3.wav"></audio></div>
+                </td>
+                <td>
+                    <div class="music-outer">
+                    c3<audio class="neu-ang-3-stargan show-audio" controlslist="noplaybackrate" controls src="./StarGAN_EVC_n2a_3.wav"></audio></div>
+                </td>
+                <td>
+                    <div class="music-outer">
+                    c4<audio class="neu-ang-3-seq2seq show-audio" controlslist="noplaybackrate" controls src="./Seq2Seq_EVC_n2a_3.wav"></audio></div>
+                </td>
+                <td>
+                    <div class="music-outer">
+                    c5<audio class="neu-ang-3-emovox show-audio" controlslist="noplaybackrate" controls src="./Emovox_n2a_3.wav"></audio></div>
+                </td>
+                <td>
+                    <div class="music-outer">
+                    c6<audio class="neu-ang-3-prosody2vec show-audio" controlslist="noplaybackrate" controls src="./Prosody2Vec_n2a_3.wav"></audio></div>
+                </td>
+                <td>
+                    <div class="music-outer">
+                    c7<audio class="neu-ang-3-ours show-audio" controlslist="noplaybackrate" controls src="./Ours_n2a_3.wav"></audio></div>
+                </td>
+                <td>
+                    <div class="music-outer">
+                    c8<audio class="neu-ang-3-target show-audio" controlslist="noplaybackrate" controls src="./0013_000370.wav"></audio></div>
+                </td>
+            </tr>
+            <!-- Add more audio rows as needed -->
+        </table>
+
         <!-- Neutral to Happy -->
-        <!-- Neutral to Sad -->
+        <h3>Neutral to Happy</h3>
+        <table class="demo-table">
+            <tr>
+                <th>Neutral</th>
+                <th>CycleGAN-EVC</th>
+                <th>StarGAN-EVC</th>
+                <th>Seq2Seq-EVC</th>
+                <th>Emovox</th>
+                <th>Prosody2Vec</th>
+                <th>Ours</th>
+                <th>Target</th>
+                <th>Reference</th>
+            </tr>
+            <tr>
+                <td>
+                    <div class="music-outer">
+                    d1<audio class="neu-hap-1-source show-audio" controlslist="noplaybackrate" controls src="./Source_n2h_1.wav"></audio></div>
+                </td>
+                <td>
+                    <div class="music-outer">
+                    d2<audio class="neu-hap-1-CycleGAN-EVC show-audio" controlslist="noplaybackrate" controls src="./CycleGAN_EVC_n2h_1.wav"></audio></div>
+                </td>
+                <td>
+                    <div class="music-outer">
+                    d3<audio class="neu-hap-1-stargan show-audio" controlslist="noplaybackrate" controls src="./StarGAN_EVC_n2h_1.wav"></audio></div>
+                </td>
+                <td>
+                    <div class="music-outer">
+                    d4<audio class="neu-hap-1-seq2seq show-audio" controlslist="noplaybackrate" controls src="./Seq2Seq_EVC_n2h_1.wav"></audio></div>
+                </td>
+                <td>
+                    <div class="music-outer">
+                    d5<audio class="neu-hap-1-emovox show-audio" controlslist="noplaybackrate" controls src="./Emovox_n2h_1.wav"></audio></div>
+                </td>
+                <td>
+                    <div class="music-outer">
+                    d6<audio class="neu-hap-1-prosody2vec show-audio" controlslist="noplaybackrate" controls src="./Prosody2Vec_n2h_1.wav"></audio></div>
+                </td>
+                <td>
+                    <div class="music-outer">
+                    d7<audio class="neu-hap-1-ours show-audio" controlslist="noplaybackrate" controls src="./Ours_n2h_1.wav"></audio></div>
+                </td>
+                <td>
+                    <div class="music-outer">
+                    d8<audio class="neu-hap-1-target show-audio" controlslist="noplaybackrate" controls src="./0013_000702.wav"></audio></div>
+                </td>
+                <td rowspan="3">
+                    <div class="music-outer">
+                    d9<audio class="neu-hap-1-reference show-audio" controlslist="noplaybackrate" controls src="./0013_001048.wav"></audio></div>
+                </td>
+            <tr>    
+
+                <td>
+                    <div class="music-outer">
+                    e1<audio class="neu-hap-2-source show-audio" controlslist="noplaybackrate" controls src="./Source_n2h_2.wav"></audio></div>
+                </td>
+                <td>
+                    <div class="music-outer">
+                    e2<audio class="neu-hap-2-CycleGAN-EVC show-audio" controlslist="noplaybackrate" controls src="./CycleGAN_EVC_n2h_2.wav"></audio></div>
+                </td>
+                <td>
+                    <div class="music-outer">
+                    e3<audio class="neu-hap-2-stargan show-audio" controlslist="noplaybackrate" controls src="./StarGAN_EVC_n2h_2.wav"></audio></div>
+                </td>
+                <td>
+                    <div class="music-outer">
+                    e4<audio class="neu-hap-2-seq2seq show-audio" controlslist="noplaybackrate" controls src="./Seq2Seq_EVC_n2h_2.wav"></audio></div>
+                </td>
+                <td>
+                    <div class="music-outer">
+                    e5<audio class="neu-hap-2-emovox show-audio" controlslist="noplaybackrate" controls src="./Emovox_n2h_2.wav"></audio></div>
+                </td>
+                <td>
+                    <div class="music-outer">
+                    e6<audio class="neu-hap-2-prosody2vec show-audio" controlslist="noplaybackrate" controls src="./Prosody2Vec_n2h_2.wav"></audio></div>
+                </td>
+                <td>
+                    <div class="music-outer">
+                    e7<audio class="neu-hap-2-ours show-audio" controlslist="noplaybackrate" controls src="./Ours_n2h_2.wav"></audio></div>
+                </td>
+                <td>
+                    <div class="music-outer">
+                    e8<audio class="neu-hap-2-target show-audio" controlslist="noplaybackrate" controls src="./0013_000703.wav"></audio></div>
+                </td>
+
+
+                
+            </tr>
+            <tr>
+                <td>
+                    <div class="music-outer">
+                    f1<audio class="neu-hap-3-source show-audio" controlslist="noplaybackrate" controls src="./Source_n2h_3.wav"></audio></div>
+                </td>
+                <td>
+                    <div class="music-outer">
+                    f2<audio class="neu-hap-3-CycleGAN-EVC show-audio" controlslist="noplaybackrate" controls src="./CycleGAN_EVC_n2h_3.wav"></audio></div>
+                </td>
+                <td>
+                    <div class="music-outer">
+                    f3<audio class="neu-hap-3-stargan show-audio" controlslist="noplaybackrate" controls src="./StarGAN_EVC_n2h_3.wav"></audio></div>
+                </td>
+                <td>
+                    <div class="music-outer">
+                    f4<audio class="neu-hap-3-seq2seq show-audio" controlslist="noplaybackrate" controls src="./Seq2Seq_EVC_n2h_3.wav"></audio></div>
+                </td>
+                <td>
+                    <div class="music-outer">
+                    f5<audio class="neu-hap-3-emovox show-audio" controlslist="noplaybackrate" controls src="./Emovox_n2h_3.wav"></audio></div>
+                </td>
+                <td>
+                    <div class="music-outer">
+                    f6<audio class="neu-hap-3-prosody2vec show-audio" controlslist="noplaybackrate" controls src="./Prosody2Vec_n2h_3.wav"></audio></div>
+                </td>
+                <td>
+                    <div class="music-outer">
+                    f7<audio class="neu-hap-3-ours show-audio" controlslist="noplaybackrate" controls src="./Ours_n2h_3.wav"></audio></div>
+                </td>
+                <td>
+                    <div class="music-outer">
+                    f8<audio class="neu-hap-3-target show-audio" controlslist="noplaybackrate" controls src="./0013_000704.wav"></audio></div>
+                </td>
+            </tr>
+            <!-- Add more audio rows as needed -->
+        </table>
+
+
+               <!-- Neutral to Sad -->
+        <h3>Neutral to Sad</h3>
+
+
+        <table class="demo-table">
+            <tr>
+                <th>Neutral</th>
+                <th>CycleGAN-EVC</th>
+                <th>StarGAN-EVC</th>
+                <th>Seq2Seq-EVC</th>
+                <th>Emovox</th>
+                <th>Prosody2Vec</th>
+                <th>Ours</th>
+                <th>Target</th>
+                <th>Reference</th>
+            </tr>
+            <tr>
+                <td>
+                    <div class="music-outer">
+                    g1<audio class="neu-sad-1-source show-audio" controlslist="noplaybackrate" controls src="./Source_n2s_1.wav"></audio></div>
+                </td>
+                <td>
+                    <div class="music-outer">
+                    g2<audio class="neu-sad-1-CycleGAN-EVC show-audio" controlslist="noplaybackrate" controls src="./CycleGAN_EVC_n2s_1.wav"></audio></div>
+                </td>
+                <td>
+                    <div class="music-outer">
+                    g3<audio class="neu-sad-1-stargan show-audio" controlslist="noplaybackrate" controls src="./StarGAN_EVC_n2s_1.wav"></audio></div>
+                </td>
+                <td>
+                    <div class="music-outer">
+                    g4<audio class="neu-sad-1-seq2seq show-audio" controlslist="noplaybackrate" controls src="./Seq2Seq_EVC_n2s_1.wav"></audio></div>
+                </td>
+                <td>
+                    <div class="music-outer">
+                    g5<audio class="neu-sad-1-emovox show-audio" controlslist="noplaybackrate" controls src="./Emovox_n2s_1.wav"></audio></div>
+                </td>
+                <td>
+                    <div class="music-outer">
+                    g6<audio class="neu-sad-1-prosody2vec show-audio" controlslist="noplaybackrate" controls src="./Prosody2Vec_n2s_1.wav"></audio></div>
+                </td>
+                <td>
+                    <div class="music-outer">
+                    g7<audio class="neu-sad-1-ours show-audio" controlslist="noplaybackrate" controls src="./Ours_n2s_1.wav"></audio></div>
+                </td>
+                <td>
+                    <div class="music-outer">
+                    g8<audio class="neu-sad-1-target show-audio" controlslist="noplaybackrate" controls src="./0013_001063.wav"></audio></div>
+                </td>
+                <td rowspan="3">
+                    <div class="music-outer">
+                    g9<audio class="neu-sad-1-reference show-audio" controlslist="noplaybackrate" controls src="./0013_001106.wav"></audio></div>
+                </td>
+
+            <tr>    
+                <td>
+                    <div class="music-outer">
+                    h1<audio class="neu-sad-2-source show-audio" controlslist="noplaybackrate" controls src="./Source_n2s_2.wav"></audio></div>
+                </td>
+                <td>
+                    <div class="music-outer">
+                    h2<audio class="neu-sad-2-CycleGAN-EVC show-audio" controlslist="noplaybackrate" controls src="./CycleGAN_EVC_n2s_2.wav"></audio></div>
+                </td>
+                <td>
+                    <div class="music-outer">
+                    h3<audio class="neu-sad-2-stargan show-audio" controlslist="noplaybackrate" controls src="./StarGAN_EVC_n2s_2.wav"></audio></div>
+                </td>
+                <td>
+                    <div class="music-outer">
+                    h4<audio class="neu-sad-2-seq2seq show-audio" controlslist="noplaybackrate" controls src="./Seq2Seq_EVC_n2s_2.wav"></audio></div>
+                </td>
+                <td>
+                    <div class="music-outer">
+                    h5<audio class="neu-sad-2-emovox show-audio" controlslist="noplaybackrate" controls src="./Emovox_n2s_2.wav"></audio></div>
+                </td>
+                <td>
+                    <div class="music-outer">
+                    h6<audio class="neu-sad-2-prosody2vec show-audio" controlslist="noplaybackrate" controls src="./Prosody2Vec_n2s_2.wav"></audio></div>
+                </td>
+                <td>
+                    <div class="music-outer">
+                    h7<audio class="neu-sad-2-ours show-audio" controlslist="noplaybackrate" controls src="./Ours_n2s_2.wav"></audio></div>
+                </td>
+                <td>
+                    <div class="music-outer">
+                    h8<audio class="neu-hap-2-target show-audio" controlslist="noplaybackrate" controls src="./0013_001066.wav"></audio></div>
+                </td>
+
+            </tr>    
+                <td>
+                    <div class="music-outer">
+                    i1<audio class="neu-sad-3-source show-audio" controlslist="noplaybackrate" controls src="./Source_n2s_3.wav"></audio></div>
+                </td>
+                <td>
+                    <div class="music-outer">
+                    i2<audio class="neu-sad-3-CycleGAN-EVC show-audio" controlslist="noplaybackrate" controls src="./CycleGAN_EVC_n2s_3.wav"></audio></div>
+                </td>
+                <td>
+                    <div class="music-outer">
+                    i3<audio class="neu-sad-3-stargan show-audio" controlslist="noplaybackrate" controls src="./StarGAN_EVC_n2s_3.wav"></audio></div>
+                </td>
+                <td>
+                    <div class="music-outer">
+                    i4<audio class="neu-sad-3-seq2seq show-audio" controlslist="noplaybackrate" controls src="./Seq2Seq_EVC_n2s_3.wav"></audio></div>
+                </td>
+                <td>
+                    <div class="music-outer">
+                    i5<audio class="neu-sad-3-emovox show-audio" controlslist="noplaybackrate" controls src="./Emovox_n2s_3.wav"></audio></div>
+                </td>
+                <td>
+                    <div class="music-outer">
+                    i6<audio class="neu-sad-3-prosody2vec show-audio" controlslist="noplaybackrate" controls src="./Prosody2Vec_n2s_3.wav"></audio></div>
+                </td>
+                <td>
+                    <div class="music-outer">
+                    i7<audio class="neu-sad-3-ours show-audio" controlslist="noplaybackrate" controls src="./Ours_n2s_3.wav"></audio></div>
+                </td>
+                <td>
+                    <div class="music-outer">
+                    i8<audio class="neu-sad-3-target show-audio" controlslist="noplaybackrate" controls src="./0013_001068.wav"></audio></div>
+                </td>
+            </tr>
+            <!-- Add more audio rows as needed -->
+        </table>
+    
         <!-- The impact of different content extraction methods on emotion features -->
+<h2>The Impact of Different Content Extraction Methods on Emotion Features</h2>
+<div class="paper-intro">
+</div>
+
+<!-- 表格展示 -->
+<table class="demo-table">
+    <tr>
+        <th>Method</th>
+        <th>Emotion Recognition Accuracy</th>
+        <th>Speech Quality (UTMOS)</th>
+    </tr>
+    <tr>
+        <td>Method A</td>
+        <td>75%</td>
+        <td>3.85</td>
+    </tr>
+    <tr>
+        <td>Method B</td>
+        <td>80%</td>
+        <td>4.02</td>
+    </tr>
+    <tr>
+        <td>Method C</td>
+        <td>78%</td>
+        <td>3.95</td>
+    </tr>
+</table>
+
         <!-- Ablation Studies -->
+<h2>Ablation Studies</h2>
+<div class="paper-intro">
+</div>
+
+<!-- 表格展示 -->
+<table class="demo-table">
+    <tr>
+        <th>Component Removed</th>
+        <th>Emotion Recognition Accuracy</th>
+        <th>Speech Quality (UTMOS)</th>
+    </tr>
+    <tr>
+        <td>Emotion Encoder</td>
+        <td>65%</td>
+        <td>3.50</td>
+    </tr>
+    <tr>
+        <td>Content Encoder</td>
+        <td>70%</td>
+        <td>3.60</td>
+    </tr>
+    <tr>
+        <td>Diffusion Module</td>
+        <td>60%</td>
+        <td>3.40</td>
+    </tr>
+</table>
+
+
     </div>
+
+    <script>
+        // 播放音频功能
+        function playAudio(audioId) {
+            const audioElement = document.getElementById(audioId);
+            if (audioElement) {
+                if (audioElement.paused) {
+                    audioElement.play().catch((error) => {
+                        console.error("Error playing audio:", error);
+                    });
+                } else {
+                    audioElement.pause();
+                }
+            }
+        }
+
+        // 下载音频功能（可选）
+        function downloadAudio(fileName) {
+            const audioElement = document.createElement('a');
+            audioElement.href = fileName;
+            audioElement.download = fileName;
+            document.body.appendChild(audioElement);
+            audioElement.click();
+            document.body.removeChild(audioElement);
+        }
+    </script>
 </body>
 </html>
