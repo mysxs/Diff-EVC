@@ -91,7 +91,6 @@
             justify-content: center;
             gap: 10px;
         }
-
         .action-btn {
             background: #4a90e2;
             color: white;
@@ -103,7 +102,6 @@
             transition: all 0.3s ease;
             min-width: 80px; /* 保证按钮有足够的宽度 */
         }
-
         .action-btn:hover {
             background: #357abd;
             transform: scale(1.05);
@@ -123,6 +121,18 @@
             justify-content: center;
             flex-direction: column;
         }
+            /* 音频播放器样式 */
+        .music-outer audio {
+            width: 100%;
+            max-width: 200px;
+            margin: 5px 0;
+        }
+        
+        /* 表格单元格内音频居中 */
+        .demo-table td {
+            vertical-align: middle;
+        }
+        
     </style>
 </head>
 <body>
@@ -148,9 +158,8 @@
             </div>
         </div>
 
-        <!-- 音频demo展示 -->
-        <h2>Experimental Results on Emotional Voice Conversion</h2>
         
+        <h2>Experimental Results on Emotional Voice Conversion</h2>
         <!-- Neutral to Angry -->
         <h3>Neutral to Angry</h3>
         <table class="demo-table">
@@ -758,17 +767,6 @@
         
     </div>
 
-            /* 音频播放器样式 */
-        .music-outer audio {
-            width: 100%;
-            max-width: 200px;
-            margin: 5px 0;
-        }
-        
-        /* 表格单元格内音频居中 */
-        .demo-table td {
-            vertical-align: middle;
-        }
     <script>
         // 播放音频功能
         function playAudio(audioId) {
