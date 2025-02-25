@@ -148,11 +148,10 @@
           border-collapse: collapse; /* 去掉单元格之间的缝隙 */
         }
         .demo-table2 th,
+        /* 表格单元格内容水平居中 */
         .demo-table2 td {
-          border: 1px solid #ddd;
-          padding: 10px;
-          text-align: center;
-          vertical-align: middle;
+            text-align: center;
+            vertical-align: middle;
         }
     
         /* 2) 音频样式：统一使用 .show-audio2 */
@@ -162,7 +161,8 @@
         }
         .show-audio2 {
           display: block;
-          width: 100px; /* 音频控件宽度，可根据需求自行调节 */
+          width: 300px;   /* 这里可自行调节大小 */
+          margin: 0 auto; /* 水平居中 */
         }
     
         /* 3) 隐藏文字的类：.hidden-label2 */
