@@ -123,6 +123,24 @@
             justify-content: center;
             flex-direction: column;
         }
+        /* 音频容器样式 */
+        .audio-container {
+            display: flex;
+            justify-content: flex-start; /* 靠左对齐 */
+            gap: 20px; /* 两个音频之间的间距 */
+            margin-top: 20px; /* 与上方内容的间距 */
+            margin-bottom: 40px; /* 与下方内容的间距 */
+        }
+        
+        .audio-item {
+            text-align: center;
+        }
+        
+        .audio-item p {
+            margin-bottom: 10px;
+            font-size: 1.1em;
+            color: #333;
+        }
     </style>
 </head>
 <body>
@@ -537,11 +555,21 @@
             <!-- Add more audio rows as needed -->
         </table>
     
-        <!-- The impact of different content extraction methods on emotion features -->
+<!-- Audio for The Impact of Different Content Extraction Methods on Emotion Features -->
 <h2>The Impact of Different Content Extraction Methods on Emotion Features</h2>
 <div class="paper-intro">
 </div>
-
+<!-- Audio for The Impact of Different Content Extraction Methods on Emotion Features -->
+<div class="audio-container">
+    <div class="audio-item">
+        <p>Source Audio</p>
+        <audio controls src="./source_audio_1.wav"></audio>
+    </div>
+    <div class="audio-item">
+        <p>Reference Audio</p>
+        <audio controls src="./reference_audio_1.wav"></audio>
+    </div>
+</div>
 <!-- 表格展示 -->
 <table class="demo-table">
     <tr>
@@ -566,11 +594,20 @@
     </tr>
 </table>
 
-        <!-- Ablation Studies -->
+<!-- Audio for Ablation Studies -->
 <h2>Ablation Studies</h2>
 <div class="paper-intro">
 </div>
-
+<div class="audio-container">
+    <div class="audio-item">
+        <p>Source Audio</p>
+        <audio controls src="./source_audio_2.wav"></audio>
+    </div>
+    <div class="audio-item">
+        <p>Reference Audio</p>
+        <audio controls src="./reference_audio_2.wav"></audio>
+    </div>
+</div>
 <!-- 表格展示 -->
 <table class="demo-table">
     <tr>
