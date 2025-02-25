@@ -108,19 +108,27 @@
         }
 
         /* 音频文件样式 */
-/*         audio {
+        audio {
             display: none; /* 隐藏音频元素 */
-        } */
+        }
         .show-audio{
             width: 70px;
             display: block;
         }
-        .music-wrapper {
+/*         .music-wrapper {
             display: flex;
             justify-content: space-between; /* 使两个音频片段之间的间距均匀 */
             align-items: center; /* 垂直居中对齐 */
             margin: 40px 0; /* 上下间距 */
-        }
+        } */
+            .music-wrapper {
+                display: flex;
+                flex-direction: column; /* 垂直排列 */
+                align-items: center; /* 居中对齐 */
+                width: 100%;
+                max-width: 600px; /* 根据需要调整 */
+                margin: 0 auto; /* 居中对齐 */
+            }
         .music-outer {
             display: flex;
             align-items: center;
@@ -625,16 +633,15 @@
         <!-- The impact of different content extraction methods on emotion features -->
 <h2>The Impact of Different Content Extraction Methods on Emotion Features</h2>
        <!-- Source and Reference Audio Wrapper -->
-    <div class="music-outer">
-        <h3>Source</h3>
-        <audio class="source-audio show-audio" controls src="./source.wav" 
-            style="width: 100%; max-width: 400px;"></audio>
-    </div>
-    
-    <div class="music-outer">
-        <h3>Reference</h3>
-        <audio class="reference-audio show-audio" controls src="./reference.wav" 
-            style="width: 100%; max-width: 400px;"></audio>
+    <div class="music-wrapper">
+        <div class="music-outer">
+            <h3>Source</h3>
+            <audio class="source-audio show-audio" controls src="./source.wav" style="width: 100%;"></audio>
+        </div>
+        <div class="music-outer">
+            <h3>Reference</h3>
+            <audio class="reference-audio show-audio" controls src="./reference.wav" style="width: 100%;"></audio>
+        </div>
     </div>
         
 <table class="demo-table">
