@@ -4,142 +4,150 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DiffEmotionVC: A Dual-Granularity Disentangled Diffusion Framework for Any-to-Any Emotional Voice Conversion</title>
-   <style>
-    /* 基础样式 */
-    body {
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 20px;
-        background-color: #f5f7fb;
-    }
+    <style>
+        /* 基础样式 */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f7fb;
+        }
 
-    .container {
-        background: white;
-        padding: 30px;
-        border-radius: 15px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
 
-    /* 论文介绍样式 */
-    .paper-intro {
-        text-align: center;
-        margin-bottom: 40px;
-    }
+        /* 论文介绍样式 */
+        .paper-intro {
+            text-align: center;
+            margin-bottom: 40px;
+        }
 
-    .paper-intro h1 {
-        font-size: 2.5em;
-        color: #333;
-        margin-bottom: 10px;
-    }
+        .paper-intro h1 {
+            font-size: 2.5em;
+            color: #333;
+            margin-bottom: 10px;
+        }
 
-    .paper-intro p {
-        font-size: 1.2em;
-        color: #666;
-        margin-bottom: 20px;
-    }
+        .paper-intro p {
+            font-size: 1.2em;
+            color: #666;
+            margin-bottom: 20px;
+        }
 
-    .paper-intro .abstract {
-        text-align: left;
-        margin-top: 30px;
-        padding: 20px;
-        background: #f8f9ff;
-        border-radius: 10px;
-    }
+        .paper-intro .abstract {
+            text-align: left;
+            margin-top: 30px;
+            padding: 20px;
+            background: #f8f9ff;
+            border-radius: 10px;
+        }
 
-    /* 模型图片样式 */
-    .model-image {
-        text-align: center;
-        margin: 40px 0;
-    }
+        /* 模型图片样式 */
+        .model-image {
+            text-align: center;
+            margin: 40px 0;
+        }
 
-    .model-image img {
-        max-width: 100%;
-        height: auto;
-        border-radius: 10px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
+        .model-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
 
-    .model-image .caption {
-        font-size: 1.2em;
-        color: #666;
-        margin-top: 10px;
-    }
+        .model-image .caption {
+            font-size: 1.2em;
+            color: #666;
+            margin-top: 10px;
+        }
 
-    /* 表格样式 */
-    .demo-table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-bottom: 40px;
-    }
+        /* 表格样式 */
+        .demo-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 40px;
+        }
 
-    .demo-table th, .demo-table td {
-        border: 1px solid #ddd;
-        padding: 15px;
-        text-align: center;
-        vertical-align: middle; /* 使按钮垂直居中 */
-    }
+        .demo-table th, .demo-table td {
+            border: 1px solid #ddd;
+            padding: 15px;
+            text-align: center;
+            vertical-align: middle; /* 使按钮垂直居中 */
+        }
 
-    .demo-table th {
-        background-color: #f8f9ff;
-        font-weight: bold;
-    }
+        .demo-table th {
+            background-color: #f8f9ff;
+            font-weight: bold;
+        }
 
-    /* 按钮样式 */
-    .button-container {
-        display: flex;
-        justify-content: center;
-        gap: 10px;
-    }
-    .action-btn {
-        background: #4a90e2;
-        color: white;
-        padding: 10px 20px;
-        border: none;
-        border-radius: 25px;
-        cursor: pointer;
-        font-size: 14px;
-        transition: all 0.3s ease;
-        min-width: 80px; /* 保证按钮有足够的宽度 */
-    }
-    .action-btn:hover {
-        background: #357abd;
-        transform: scale(1.05);
-    }
+        /* 按钮样式 */
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+        .action-btn {
+            background: #4a90e2;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            min-width: 80px; /* 保证按钮有足够的宽度 */
+        }
+        .action-btn:hover {
+            background: #357abd;
+            transform: scale(1.05);
+        }
 
-    /* 音频文件样式 */
-    audio {
-        display: none; /* 隐藏音频元素 */
-    }
-    .show-audio {
-        width: 100%;
-        max-width: 300px; /* 根据需要调整 */
-        margin: 5px 0;
-    }
-
-    /* 音频播放器并列样式 */
-    .music-wrapper {
-        display: flex;
-        justify-content: space-between; /* 使两个音频片段之间的间距均匀 */
-        align-items: center; /* 垂直居中对齐 */
-        margin: 40px 0; /* 上下间距 */
-        width: 100%;
-        max-width: 600px; /* 根据需要调整 */
-    }
-
-    .music-outer {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column; /* 垂直排列 */
-        width: 48%; /* 每个音频播放器占48%的宽度 */
-    }
-
-    /* 表格单元格内音频居中 */
-    .demo-table td {
-        vertical-align: middle;
-    }
-</style>
+        /* 音频文件样式 */
+        audio {
+            display: none; /* 隐藏音频元素 */
+        }
+        .show-audio{
+            width: 70px;
+            display: block;
+        }
+/*         .music-wrapper {
+            display: flex;
+            justify-content: space-between; /* 使两个音频片段之间的间距均匀 */
+            align-items: center; /* 垂直居中对齐 */
+            margin: 40px 0; /* 上下间距 */
+        } */
+            .music-wrapper {
+                display: flex;
+                flex-direction: column; /* 垂直排列 */
+                align-items: center; /* 居中对齐 */
+                width: 100%;
+                max-width: 600px; /* 根据需要调整 */
+                margin: 0 auto; /* 居中对齐 */
+            }
+        .music-outer {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+            /* 音频播放器样式 */
+        .music-outer audio {
+            width: 100%;
+            max-width: 200px;
+            margin: 5px 0;
+        }
+        
+        /* 表格单元格内音频居中 */
+        .demo-table td {
+            vertical-align: middle;
+        }
+        
+    </style>
 </head>
 <body>
     <div class="container">
