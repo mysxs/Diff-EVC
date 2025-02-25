@@ -141,6 +141,48 @@
             font-size: 1.1em;
             color: #333;
         }
+            /* 1) 表格样式：统一使用 .demo-table2 */
+        .demo-table2 {
+          width: 80%;         /* 根据需要自行调节表格宽度 */
+          margin: 20px auto;  /* 居中表格，并与上下留些空白 */
+          border-collapse: collapse; /* 去掉单元格之间的缝隙 */
+        }
+        .demo-table2 th,
+        .demo-table2 td {
+          border: 1px solid #ddd;
+          padding: 10px;
+          text-align: center;
+          vertical-align: middle;
+        }
+    
+        /* 2) 音频样式：统一使用 .show-audio2 */
+        /* 先隐藏所有 audio，只有带 show-audio2 的才显示 */
+        audio {
+          display: none;
+        }
+        .show-audio2 {
+          display: block;
+          width: 80px; /* 音频控件宽度，可根据需求自行调节 */
+        }
+    
+        /* 3) 隐藏文字的类：.hidden-label2 */
+        .hidden-label2 {
+          display: none; 
+        }
+    
+        /* 4) 音频容器：.audio-container2 */
+        .audio-container2 {
+          display: flex;
+          align-items: center;
+          gap: 20px; 
+          margin: 20px 0;
+        }
+        /* 如果想每个音频自己单独一行，也可以去掉 display:flex; 或使用别的布局方式 */
+    
+        /* 让音频说明文字与播放器稍微分隔 */
+        .audio-item p {
+          margin: 5px 0;
+        }
     </style>
 </head>
 <body>
@@ -552,209 +594,205 @@
             </tr>
         </table>
 
-                   <!-- The impact of different content extraction methods on emotion features -->
-    <h2>The Impact of Different Content Extraction Methods on Emotion Features</h2>
-    <div class="paper-intro"></div>
-    
-    <!-- Audio for The Impact of Different Content Extraction Methods on Emotion Features -->
-    <div class="audio-container">
-        <!-- 这里的 <p> 不加 .hidden-label，所以会显示“Source Audio” -->
-        <div class="audio-item">
-            <p>Source Audio</p>
-            <audio class="show-audio" controls src="./source_audio_1.wav"></audio>
-        </div>
-        <!-- 这里的 <p> 不加 .hidden-label，所以会显示“Reference Audio” -->
-        <div class="audio-item">
-            <p>Reference Audio</p>
-            <audio class="show-audio" controls src="./reference_audio_1.wav"></audio>
-        </div>
+      <!-- ============ 第一部分: The Impact of Different Content Extraction Methods on Emotion Features ============ -->
+  <h2>The Impact of Different Content Extraction Methods on Emotion Features</h2>
+
+  <!-- 上面音频区域 -->
+  <div class="audio-container2">
+    <div class="audio-item">
+      <p>Source Audio</p>
+      <audio class="show-audio2" controls src="./source_audio_1.wav"></audio>
     </div>
-    
-    <!-- 表格展示 -->
-    <table class="demo-table">
-        <tr>
-            <th>Method</th>
-            <th>Sample1</th>
-            <th>Sample2</th>
-        </tr>
-        <tr>
-            <td>Our(ContentVec)</td>
-            <td>
-                <div class="audio-item">
-                    <!-- 给“Sample1”加上类 .hidden-label -->
-                    <p class="hidden-label">Sample1</p>
-                    <audio class="show-audio" controls src="./contentvec_sample1.wav"></audio>
-                </div>
-            </td>
-            <td>
-                <div class="audio-item">
-                    <p class="hidden-label">Sample2</p>
-                    <audio class="show-audio" controls src="./contentvec_sample2.wav"></audio>
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td>ContentVec → Whisper</td>
-            <td>
-                <div class="audio-item">
-                    <p class="hidden-label">Sample1</p>
-                    <audio class="show-audio" controls src="./whisper_sample1.wav"></audio>
-                </div>
-            </td>
-            <td>
-                <div class="audio-item">
-                    <p class="hidden-label">Sample2</p>
-                    <audio class="show-audio" controls src="./whisper_sample2.wav"></audio>
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td>ContentVec → VQ-ContentVec</td>
-            <td>
-                <div class="audio-item">
-                    <p class="hidden-label">Sample1</p>
-                    <audio class="show-audio" controls src="./vq-contentvec_sample1.wav"></audio>
-                </div>
-            </td>
-            <td>
-                <div class="audio-item">
-                    <p class="hidden-label">Sample2</p>
-                    <audio class="show-audio" controls src="./vq-contentvec_sample2.wav"></audio>
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td>ContentVec → Speechtokenizer</td>
-            <td>
-                <div class="audio-item">
-                    <p class="hidden-label">Sample1</p>
-                    <audio class="show-audio" controls src="./speechtokenizer_sample1.wav"></audio>
-                </div>
-            </td>
-            <td>
-                <div class="audio-item">
-                    <p class="hidden-label">Sample2</p>
-                    <audio class="show-audio" controls src="./speechtokenizer_sample2.wav"></audio>
-                </div>
-            </td>
-        </tr>
-    </table>
-    
-    <!-- Ablation Studies -->
-    <h2>Ablation Studies</h2>
-    <div class="paper-intro"></div>
-    
-    <!-- Audio for Ablation Studies -->
-    <div class="audio-container">
-        <!-- 同理，这里也保留“Source Audio”和“Reference Audio” -->
-        <div class="audio-item">
-            <p>Source Audio</p>
-            <audio class="show-audio" controls src="./source_audio_2.wav"></audio>
-        </div>
-        <div class="audio-item">
-            <p>Reference Audio</p>
-            <audio class="show-audio" controls src="./reference_audio_2.wav"></audio>
-        </div>
+    <div class="audio-item">
+      <p>Reference Audio</p>
+      <audio class="show-audio2" controls src="./reference_audio_1.wav"></audio>
     </div>
-    
-    <!-- 表格展示 -->
-    <table class="demo-table">
-        <tr>
-            <th>Method</th>
-            <th>Sample1</th>
-            <th>Sample2</th>
-        </tr>
-        <tr>
-            <td>Our (cross-attention)</td>
-            <td>
-                <div class="audio-item">
-                    <p class="hidden-label">Sample1</p>
-                    <audio class="show-audio" controls src="./cross-attention_sample1.wav"></audio>
-                </div>
-            </td>
-            <td>
-                <div class="audio-item">
-                    <p class="hidden-label">Sample2</p>
-                    <audio class="show-audio" controls src="./cross-attention_sample2.wav"></audio>
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td>w/o speaker encoder</td>
-            <td>
-                <div class="audio-item">
-                    <p class="hidden-label">Sample1</p>
-                    <audio class="show-audio" controls src="./wospeakerencoder_sample1.wav"></audio>
-                </div>
-            </td>
-            <td>
-                <div class="audio-item">
-                    <p class="hidden-label">Sample2</p>
-                    <audio class="show-audio" controls src="./wospeakerencoder_sample2.wav"></audio>
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td>w/o emotion encoder</td>
-            <td>
-                <div class="audio-item">
-                    <p class="hidden-label">Sample1</p>
-                    <audio class="show-audio" controls src="./woemotionencoder_sample1.wav"></audio>
-                </div>
-            </td>
-            <td>
-                <div class="audio-item">
-                    <p class="hidden-label">Sample2</p>
-                    <audio class="show-audio" controls src="./woemotionencoder_sample2.wav"></audio>
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td>w/o contrast loss</td>
-            <td>
-                <div class="audio-item">
-                    <p class="hidden-label">Sample1</p>
-                    <audio class="show-audio" controls src="./wocontrastloss_sample1.wav"></audio>
-                </div>
-            </td>
-            <td>
-                <div class="audio-item">
-                    <p class="hidden-label">Sample2</p>
-                    <audio class="show-audio" controls src="./wocontrastloss_sample2.wav"></audio>
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td>w/o ortho loss</td>
-            <td>
-                <div class="audio-item">
-                    <p class="hidden-label">Sample1</p>
-                    <audio class="show-audio" controls src="./woortholoss_sample1.wav"></audio>
-                </div>
-            </td>
-            <td>
-                <div class="audio-item">
-                    <p class="hidden-label">Sample2</p>
-                    <audio class="show-audio" controls src="./woortholoss_sample2.wav"></audio>
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td>cross-attention → add</td>
-            <td>
-                <div class="audio-item">
-                    <p class="hidden-label">Sample1</p>
-                    <audio class="show-audio" controls src="./cross-attention-add_sample1.wav"></audio>
-                </div>
-            </td>
-            <td>
-                <div class="audio-item">
-                    <p class="hidden-label">Sample2</p>
-                    <audio class="show-audio" controls src="./cross-attention-add_sample2.wav"></audio>
-                </div>
-            </td>
-        </tr>
-    </table>
+  </div>
+
+  <!-- 表格 -->
+  <table class="demo-table2">
+    <tr>
+      <th>Method</th>
+      <th>Sample1</th>
+      <th>Sample2</th>
+    </tr>
+    <tr>
+      <td>Our(ContentVec)</td>
+      <td>
+        <div class="audio-item">
+          <p class="hidden-label2">Sample1</p>
+          <audio class="show-audio2" controls src="./contentvec_sample1.wav"></audio>
+        </div>
+      </td>
+      <td>
+        <div class="audio-item">
+          <p class="hidden-label2">Sample2</p>
+          <audio class="show-audio2" controls src="./contentvec_sample2.wav"></audio>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>ContentVec → Whisper</td>
+      <td>
+        <div class="audio-item">
+          <p class="hidden-label2">Sample1</p>
+          <audio class="show-audio2" controls src="./whisper_sample1.wav"></audio>
+        </div>
+      </td>
+      <td>
+        <div class="audio-item">
+          <p class="hidden-label2">Sample2</p>
+          <audio class="show-audio2" controls src="./whisper_sample2.wav"></audio>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>ContentVec → VQ-ContentVec</td>
+      <td>
+        <div class="audio-item">
+          <p class="hidden-label2">Sample1</p>
+          <audio class="show-audio2" controls src="./vq-contentvec_sample1.wav"></audio>
+        </div>
+      </td>
+      <td>
+        <div class="audio-item">
+          <p class="hidden-label2">Sample2</p>
+          <audio class="show-audio2" controls src="./vq-contentvec_sample2.wav"></audio>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>ContentVec → Speechtokenizer</td>
+      <td>
+        <div class="audio-item">
+          <p class="hidden-label2">Sample1</p>
+          <audio class="show-audio2" controls src="./speechtokenizer_sample1.wav"></audio>
+        </div>
+      </td>
+      <td>
+        <div class="audio-item">
+          <p class="hidden-label2">Sample2</p>
+          <audio class="show-audio2" controls src="./speechtokenizer_sample2.wav"></audio>
+        </div>
+      </td>
+    </tr>
+    <!-- ... 需要可继续加行 ... -->
+  </table>
+
+
+  <!-- ============ 第二部分: Ablation Studies ============ -->
+  <h2>Ablation Studies</h2>
+
+  <!-- 下方音频区域（同样都用 .audio-container2） -->
+  <div class="audio-container2">
+    <div class="audio-item">
+      <p>Source Audio</p>
+      <audio class="show-audio2" controls src="./source_audio_2.wav"></audio>
+    </div>
+    <div class="audio-item">
+      <p>Reference Audio</p>
+      <audio class="show-audio2" controls src="./reference_audio_2.wav"></audio>
+    </div>
+  </div>
+
+  <!-- 表格 -->
+  <table class="demo-table2">
+    <tr>
+      <th>Method</th>
+      <th>Sample1</th>
+      <th>Sample2</th>
+    </tr>
+    <tr>
+      <td>Our (cross-attention)</td>
+      <td>
+        <div class="audio-item">
+          <p class="hidden-label2">Sample1</p>
+          <audio class="show-audio2" controls src="./cross-attention_sample1.wav"></audio>
+        </div>
+      </td>
+      <td>
+        <div class="audio-item">
+          <p class="hidden-label2">Sample2</p>
+          <audio class="show-audio2" controls src="./cross-attention_sample2.wav"></audio>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>w/o speaker encoder</td>
+      <td>
+        <div class="audio-item">
+          <p class="hidden-label2">Sample1</p>
+          <audio class="show-audio2" controls src="./wospeakerencoder_sample1.wav"></audio>
+        </div>
+      </td>
+      <td>
+        <div class="audio-item">
+          <p class="hidden-label2">Sample2</p>
+          <audio class="show-audio2" controls src="./wospeakerencoder_sample2.wav"></audio>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>w/o emotion encoder</td>
+      <td>
+        <div class="audio-item">
+          <p class="hidden-label2">Sample1</p>
+          <audio class="show-audio2" controls src="./woemotionencoder_sample1.wav"></audio>
+        </div>
+      </td>
+      <td>
+        <div class="audio-item">
+          <p class="hidden-label2">Sample2</p>
+          <audio class="show-audio2" controls src="./woemotionencoder_sample2.wav"></audio>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>w/o contrast loss</td>
+      <td>
+        <div class="audio-item">
+          <p class="hidden-label2">Sample1</p>
+          <audio class="show-audio2" controls src="./wocontrastloss_sample1.wav"></audio>
+        </div>
+      </td>
+      <td>
+        <div class="audio-item">
+          <p class="hidden-label2">Sample2</p>
+          <audio class="show-audio2" controls src="./wocontrastloss_sample2.wav"></audio>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>w/o ortho loss</td>
+      <td>
+        <div class="audio-item">
+          <p class="hidden-label2">Sample1</p>
+          <audio class="show-audio2" controls src="./woortholoss_sample1.wav"></audio>
+        </div>
+      </td>
+      <td>
+        <div class="audio-item">
+          <p class="hidden-label2">Sample2</p>
+          <audio class="show-audio2" controls src="./woortholoss_sample2.wav"></audio>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>cross-attention → add</td>
+      <td>
+        <div class="audio-item">
+          <p class="hidden-label2">Sample1</p>
+          <audio class="show-audio2" controls src="./cross-attention-add_sample1.wav"></audio>
+        </div>
+      </td>
+      <td>
+        <div class="audio-item">
+          <p class="hidden-label2">Sample2</p>
+          <audio class="show-audio2" controls src="./cross-attention-add_sample2.wav"></audio>
+        </div>
+      </td>
+    </tr>
+  </table>
         
         
     <script>
