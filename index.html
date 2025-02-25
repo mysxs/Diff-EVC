@@ -552,90 +552,109 @@
                     i8<audio class="neu-sad-3-target show-audio" controlslist="noplaybackrate" controls src="./0013_001068.wav"></audio></div>
                 </td>
             </tr>
-            <!-- Add more audio rows as needed -->
         </table>
 
-    <!-- The impact of different content extraction methods on emotion features -->
-<h2>The Impact of Different Content Extraction Methods on Emotion Features</h2>
-<div class="paper-intro">
-</div>
-
-<!-- 表格展示 -->
-<table class="demo-table">
-    <tr>
-        <th>Method</th>
-        <th>Emotion Recognition Accuracy</th>
-        <th>Speech Quality (UTMOS)</th>
-    </tr>
-    <tr>
-        <td>Method A</td>
-        <td>75%</td>
-        <td>3.85</td>
-    </tr>
-    <tr>
-        <td>Method B</td>
-        <td>80%</td>
-        <td>4.02</td>
-    </tr>
-    <tr>
-        <td>Method C</td>
-        <td>78%</td>
-        <td>3.95</td>
-    </tr>
-</table>
-
-<!-- Audio for The Impact of Different Content Extraction Methods on Emotion Features -->
-<div class="audio-container">
-    <div class="audio-item">
-        <p>Source Audio</p>
-        <audio controls src="./source_audio_1.wav"></audio>
+      <!-- The impact of different content extraction methods on emotion features -->
+    <h2>The Impact of Different Content Extraction Methods on Emotion Features</h2>
+    <div class="paper-intro">
     </div>
-    <div class="audio-item">
-        <p>Reference Audio</p>
-        <audio controls src="./reference_audio_1.wav"></audio>
+    
+    <!-- 表格展示 -->
+    <table class="demo-table">
+        <tr>
+            <th>Method</th>
+            <th>Sample1</th>
+            <th>Sample2</th>
+        </tr>
+        <tr>
+            <td>Our(ContentVec)</td>
+            <td><div class="audio-item"><p>Audio</p><audio controls src="./contentvec_sample1.wav"></audio></div></td>
+            <td><div class="audio-item"><p>Audio</p><audio controls src="./contentvec_sample2.wav"></audio></div></td>
+        </tr>
+        <tr>
+            <td>ContentVec → Whisper</td>
+            <td><div class="audio-item"><p>Audio</p><audio controls src="./whisper_sample1.wav"></audio></div></td>
+            <td><div class="audio-item"><p>Audio</p><audio controls src="./whisper_sample2.wav"></audio></div></td>
+        </tr>
+        <tr>
+            <td>ContentVec → VQ-ContentVec</td>
+            <td><div class="audio-item"><p>Audio</p><audio controls src="./vq-contentvec_sample1.wav"></audio></div></td>
+            <td><div class="audio-item"><p>Audio</p><audio controls src="./vq-contentvec_sample2.wav"></audio></div></td>
+        </tr>
+        <tr>
+            <td>ContentVec → Speechtokenizer</td>
+            <td><div class="audio-item"><p>Audio</p><audio controls src="./speechtokenizer_sample1.wav"></audio></div></td>
+            <td><div class="audio-item"><p>Audio</p><audio controls src="./speechtokenizer_sample2.wav"></audio></div></td>
+        </tr>
+    </table>
+    
+    <!-- Audio for The Impact of Different Content Extraction Methods on Emotion Features -->
+    <div class="audio-container">
+        <div class="audio-item">
+            <p>Source Audio</p>
+            <audio controls src="./source_audio_1.wav"></audio>
+        </div>
+        <div class="audio-item">
+            <p>Reference Audio</p>
+            <audio controls src="./reference_audio_1.wav"></audio>
+        </div>
     </div>
-</div>
-
-<!-- Ablation Studies -->
-<h2>Ablation Studies</h2>
-<div class="paper-intro">
-</div>
-
-<!-- 表格展示 -->
-<table class="demo-table">
-    <tr>
-        <th>Component Removed</th>
-        <th>Emotion Recognition Accuracy</th>
-        <th>Speech Quality (UTMOS)</th>
-    </tr>
-    <tr>
-        <td>Emotion Encoder</td>
-        <td>65%</td>
-        <td>3.50</td>
-    </tr>
-    <tr>
-        <td>Content Encoder</td>
-        <td>70%</td>
-        <td>3.60</td>
-    </tr>
-    <tr>
-        <td>Diffusion Module</td>
-        <td>60%</td>
-        <td>3.40</td>
-    </tr>
-</table>
-
-<!-- Audio for Ablation Studies -->
-<div class="audio-container">
-    <div class="audio-item">
-        <p>Source Audio</p>
-        <audio controls src="./source_audio_2.wav"></audio>
+    
+    <!-- Ablation Studies -->
+    <h2>Ablation Studies</h2>
+    <div class="paper-intro">
     </div>
-    <div class="audio-item">
-        <p>Reference Audio</p>
-        <audio controls src="./reference_audio_2.wav"></audio>
+    
+    <!-- 表格展示 -->
+    <table class="demo-table">
+        <tr>
+            <th>Method</th>
+            <th>Sample1</th>
+            <th>Sample2</th>
+        </tr>
+        <tr>
+            <td>Our (cross-attention)</td>
+            <td><div class="audio-item"><p>Audio</p><audio controls src="./cross-attention_sample1.wav"></audio></div></td>
+            <td><div class="audio-item"><p>Audio</p><audio controls src="./cross-attention_sample2.wav"></audio></div></td>
+        </tr>
+        <tr>
+            <td>w/o speaker encoder</td>
+            <td><div class="audio-item"><p>Audio</p><audio controls src="./wospeakerencoder_sample1.wav"></audio></div></td>
+            <td><div class="audio-item"><p>Audio</p><audio controls src="./wospeakerencoder_sample2.wav"></audio></div></td>
+        </tr>
+        <tr>
+            <td>w/o emotion encoder</td>
+            <td><div class="audio-item"><p>Audio</p><audio controls src="./woemotionencoder_sample1.wav"></audio></div></td>
+            <td><div class="audio-item"><p>Audio</p><audio controls src="./woemotionencoder_sample2.wav"></audio></div></td>
+        </tr>
+        <tr>
+            <td>w/o contrast loss</td>
+            <td><div class="audio-item"><p>Audio</p><audio controls src="./wocontrastloss_sample1.wav"></audio></div></td>
+            <td><div class="audio-item"><p>Audio</p><audio controls src="./wocontrastloss_sample2.wav"></audio></div></td>
+        </tr>
+        <tr>
+            <td>w/o ortho loss</td>
+            <td><div class="audio-item"><p>Audio</p><audio controls src="./woortholoss_sample1.wav"></audio></div></td>
+            <td><div class="audio-item"><p>Audio</p><audio controls src="./woortholoss_sample2.wav"></audio></div></td>
+        </tr>
+        <tr>
+            <td>cross-attention → add</td>
+            <td><div class="audio-item"><p>Audio</p><audio controls src="./cross-attention-add_sample1.wav"></audio></div></td>
+            <td><div class="audio-item"><p>Audio</p><audio controls src="./cross-attention-add_sample2.wav"></audio></div></td>
+        </tr>
+    </table>
+    
+    <!-- Audio for Ablation Studies -->
+    <div class="audio-container">
+        <div class="audio-item">
+            <p>Source Audio</p>
+            <audio controls src="./source_audio_2.wav"></audio>
+        </div>
+        <div class="audio-item">
+            <p>Reference Audio</p>
+            <audio controls src="./reference_audio_2.wav"></audio>
+        </div>
     </div>
-</div>
         
     <script>
         // 播放音频功能
