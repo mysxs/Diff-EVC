@@ -186,6 +186,7 @@
                 <td>
                     <div class="music-outer">
                         <audio class="show-audio" src="./Source_n2a_1.wav"></audio>
+                        <button class="play-button" onclick="playAudio('audio1')">播放</button>
                     </div>
                 </td>
                 <td>
@@ -860,29 +861,41 @@
         
         
     <script>
+        
         // 播放音频功能
+        // function playAudio(audioId) {
+        //     const audioElement = document.getElementById(audioId);
+        //     if (audioElement) {
+        //         if (audioElement.paused) {
+        //             audioElement.play().catch((error) => {
+        //                 console.error("Error playing audio:", error);
+        //             });
+        //         } else {
+        //             audioElement.pause();
+        //         }
+        //     }
+        // }
         function playAudio(audioId) {
-            const audioElement = document.getElementById(audioId);
-            if (audioElement) {
-                if (audioElement.paused) {
-                    audioElement.play().catch((error) => {
-                        console.error("Error playing audio:", error);
-                    });
-                } else {
-                    audioElement.pause();
+                const audioElement = document.getElementById(audioId);
+                if (audioElement) {
+                    if (audioElement.paused) {
+                        audioElement.play().catch((error) => {
+                            console.error("播放音频时出错:", error);
+                        });
+                    } else {
+                        audioElement.pause();
+                    }
                 }
-            }
-        }
 
         // 下载音频功能（可选）
-        function downloadAudio(fileName) {
-            const audioElement = document.createElement('a');
-            audioElement.href = fileName;
-            audioElement.download = fileName;
-            document.body.appendChild(audioElement);
-            audioElement.click();
-            document.body.removeChild(audioElement);
-        }
+        // function downloadAudio(fileName) {
+        //     const audioElement = document.createElement('a');
+        //     audioElement.href = fileName;
+        //     audioElement.download = fileName;
+        //     document.body.appendChild(audioElement);
+        //     audioElement.click();
+        //     document.body.removeChild(audioElement);
+        // }
     </script>
 </body>
 </html>
